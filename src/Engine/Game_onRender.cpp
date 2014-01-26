@@ -9,7 +9,6 @@
 #include "TextureManager.h"
 #include "Camera.h"
 
-
 /*
  * Render the frame
  */
@@ -34,16 +33,24 @@ void Game::onRender() {
 		Vector2D pos = camera_->getDrawPos(tileset[i]->getCoords());
 
 		TextureManager::GetInstance()->draw("tile", pos.x, pos.y,
-											32, 32,
-											0,
-											0, sdlRenderer_, SDL_FLIP_NONE);
+											32, 32,0, 0,
+											camera_->getScale(), sdlRenderer_, SDL_FLIP_NONE);
 
 	}
 
+	//TODO Sort out these fucking sprite sizes
 	TextureManager::GetInstance()->draw(gobj->getSprite()->ref, pos.x, pos.y,
 										gobj->getSprite()->width, gobj->getSprite()->height,
-										gobj->getSprite()->currentAnimation->prog,
-										gobj->getSprite()->currentAnimation->y, sdlRenderer_, SDL_FLIP_NONE);
+										gobj->getSprite()->currentAnimation->prog, gobj->getSprite()->currentAnimation->y,
+										camera_->getScale(), sdlRenderer_, SDL_FLIP_NONE);
+
+
+	pos = camera_->getDrawPos(new Vector2D(5.5f, 7.5f));
+
+	TextureManager::GetInstance()->draw(gobj->getSprite()->ref, pos.x, pos.y,
+										gobj->getSprite()->width, gobj->getSprite()->height,
+										gobj->getSprite()->currentAnimation->prog, gobj->getSprite()->currentAnimation->y,
+										camera_->getScale(), sdlRenderer_, SDL_FLIP_NONE);
 
 
 	//Show what's been drawn

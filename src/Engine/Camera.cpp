@@ -9,11 +9,11 @@
 
 
 Camera::Camera() {
-	xRes = 0;
-	yRes = 0;
-	scale = 1.0f;
-	position.x = 0.5f;
-	position.y = 0.5f;
+	xRes_ = 0;
+	yRes_ = 0;
+	scale_ = 0.6f;
+	position_.x = 0.5f;
+	position_.y = 0.5f;
 }
 
 
@@ -22,35 +22,35 @@ Camera::~Camera() {
 }
 
 void Camera::setPosition(float x, float y) {
-	position.x = x;
-	position.y = y;
+	position_.x = x;
+	position_.y = y;
 }
 
 Vector2D* Camera::getPosition() {
-	return &position;
+	return &position_;
 }
 
 void Camera::setScale(float scale) {
-	this->scale = scale;
+	scale_ = scale;
 }
 
 float Camera::getScale() {
-	return scale;
+	return scale_;
 }
 
 Vector2D Camera::getDrawPos(Vector2D* coords) {
 
-	float ratio = xRes / (CAMERA_WIDTH * scale);
+	float ratio = xRes_ / CAMERA_WIDTH;
 
 	int x, y;
 	float xtemp, ytemp;
 
-	xtemp = coords->x - position.x;
-	ytemp = coords->y - position.y;
+	xtemp = coords->x - position_.x;
+	ytemp = coords->y - position_.y;
 
-	x = (xRes / 2);
+	x = (xRes_ / 2);
 	x += (xtemp * ratio);
-	y = (yRes / 2);
+	y = (yRes_ / 2);
 	y += (ytemp * ratio);
 
 	Vector2D drawPos ((int)x, (int)y);
@@ -59,7 +59,7 @@ Vector2D Camera::getDrawPos(Vector2D* coords) {
 }
 
 void Camera::init(int x,int y) {
-	this->xRes = x;
-	this->yRes = y;
+	this->xRes_ = x;
+	this->yRes_ = y;
 }
 

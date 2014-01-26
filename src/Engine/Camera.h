@@ -25,9 +25,9 @@ public:
 	void init(int,int);
 
 private:
-	Vector2D position;
-	float scale;
-	int xRes, yRes;
+	Vector2D position_;
+	float scale_;
+	int xRes_, yRes_;
 };
 
 #endif /* CAMERA_H_ */

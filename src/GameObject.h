@@ -9,7 +9,7 @@
 #define GAMEOBJECT_H_
 
 #include "Tile.h"
-#include "Vector2D.h"
+#include "Engine/Vector2D.h"
 #include "Sprite.h"
 
 /*
@@ -21,11 +21,12 @@ public:
 	GameObject(Tile*, Sprite*);
 	Vector2D* getPos();
 	virtual ~GameObject();
-	Tile *location;
-	Vector2D *coords;
-	Sprite *sprite;
-private:
+	Sprite* getSprite();
 
+private:
+	Tile *location_;
+	Vector2D *coords_;
+	Sprite *sprite_;
 };
 
 #endif /* GAMEOBJECT_H_ */

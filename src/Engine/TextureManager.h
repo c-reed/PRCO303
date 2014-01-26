@@ -18,8 +18,8 @@
 class TextureManager {
 public:
 	static TextureManager* GetInstance();
-	bool load(std::string, std::string,	SDL_Renderer*);
-	void draw(std::string, int, int, int, int, int, int, SDL_Renderer*, SDL_RendererFlip);
+	bool load(std::string filename, std::string ref,	SDL_Renderer* renderer);
+	void draw(std::string ref, int x, int y, int wdith, int height, int xFrame, int yFrame, float cameraScale, SDL_Renderer* renderer, SDL_RendererFlip flip);
 
 	/*
 	 * Used to store multiple textures mapped to a string for retrieval

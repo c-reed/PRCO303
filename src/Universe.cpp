@@ -11,13 +11,15 @@
 
 Universe::Universe(int x, int y) {
 
-	this->y = y;
-	this->x = x;
+	yDim_ = y;
+	xDim_ = x;
 
-	tileSet = new Tile*[x * y];
+	tileSet_ = new Tile*[xDim_ * yDim_];
 
-	for (int i = 0; i < x * y; i++) {
-		tileSet[i] = new Tile(i, 0.5f + i % x, 0.5f + i / y);
+	for (int i = 0; i < xDim_ * yDim_; i++) {
+		float x = 0.5f + (float)(i % xDim_);
+		float y = 0.5f + (float)(i / yDim_);
+		tileSet_[i] = new Tile(i, x, y);
 	}
 
 	initTiles();
@@ -95,47 +97,47 @@ void Universe::initTiles() {
 	int i = 0;
 
 	//figure out all the tile indexes relative to the starting index (0)
-	int nwTile = i - x - 1;
-	int	nTile = i - x;
-	int neTile = i - x + 1;
+	int nwTile = i - xDim_ - 1;
+	int	nTile = i - xDim_;
+	int neTile = i - xDim_ + 1;
 	int eTile = i + 1;
-	int seTile = i + x + 1;
-	int	sTile = i + x;
-	int swTile = i + x - 1;
+	int seTile = i + xDim_ + 1;
+	int	sTile = i + xDim_;
+	int swTile = i + xDim_ - 1;
 	int wTile = i - 1;
 
-	for(i = 0; i < x * y; i++) {
+	for(i = 0; i < xDim_ * yDim_; i++) {
 
-		if (i % x != 0 && nwTile >= 0) {
-			tileSet[i]->setNWTile(tileSet[nwTile]);
+		if (i % xDim_ != 0 && nwTile >= 0) {
+			tileSet_[i]->setNWTile(tileSet_[nwTile]);
 		}
 
 		if (nTile >= 0) {
-			tileSet[i]->setNTile(tileSet[nTile]);
+			tileSet_[i]->setNTile(tileSet_[nTile]);
 		}
 
-		if (i % x != (x-1) && neTile >= 0) {
-			tileSet[i]->setNETile(tileSet[neTile]);
+		if (i % xDim_ != (xDim_-1) && neTile >= 0) {
+			tileSet_[i]->setNETile(tileSet_[neTile]);
 		}
 
-		if (i % x != (x-1)) {
-			tileSet[i]->setETile(tileSet[eTile]);
+		if (i % xDim_ != (xDim_-1)) {
+			tileSet_[i]->setETile(tileSet_[eTile]);
 		}
 
-		if (i % x != (x-1) && seTile <= x*y) {
-			tileSet[i]->setSETile(tileSet[seTile]);
+		if (i % xDim_ != (xDim_-1) && seTile <= xDim_*yDim_) {
+			tileSet_[i]->setSETile(tileSet_[seTile]);
 		}
 
-		if (sTile <= x*y) {
-			tileSet[i]->setSTile(tileSet[sTile]);
+		if (sTile <= xDim_*yDim_) {
+			tileSet_[i]->setSTile(tileSet_[sTile]);
 		}
 
-		if (i % x != 0 && swTile <= x*y) {
-			tileSet[i]->setSWTile(tileSet[swTile]);
+		if (i % xDim_ != 0 && swTile <= xDim_*yDim_) {
+			tileSet_[i]->setSWTile(tileSet_[swTile]);
 		}
 
-		if (i % x != 0) {
-			tileSet[i]->setWTile(tileSet[wTile]);
+		if (i % xDim_ != 0) {
+			tileSet_[i]->setWTile(tileSet_[wTile]);
 		}
 
 
@@ -153,13 +155,13 @@ void Universe::initTiles() {
 }
 
 int Universe::getSizeX() {
-	return x;
+	return xDim_;
 }
 
 int Universe::getSizeY() {
-	return y;
+	return yDim_;
 }
 
 Tile** Universe::getTileset() {
-	return tileSet;
+	return tileSet_;
 }

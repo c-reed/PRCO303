@@ -26,5 +26,11 @@ void Game::onEvent(SDL_Event* event) {
 		else
 		if (keystates_[SDL_SCANCODE_DOWN] == 1)
 			camera_->setPosition(camera_->getPosition()->x, camera_->getPosition()->y+0.1f);
+		else
+		if (keystates_[SDL_SCANCODE_0] == 1)
+			camera_->setScale(camera_->getScale() + 0.025f);
+		else
+		if (keystates_[SDL_SCANCODE_1] == 1)
+			camera_->setScale(camera_->getScale() - 0.025f);
 	}
 }

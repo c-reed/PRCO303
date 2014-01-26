@@ -10,19 +10,23 @@
 
 GameObject::GameObject(Tile* location, Sprite* sprite) {
 
-	this->sprite = sprite;
-	this->location = location;
-	this->coords = new Vector2D(location->getCoords()->x, location->getCoords()->y);
+	sprite_ = sprite;
+	location_ = location;
+	coords_ = new Vector2D(location_->getCoords()->x, location_->getCoords()->y);
 
 }
 
 Vector2D* GameObject::getPos() {
-	return coords;
+	return coords_;
 }
 
 GameObject::~GameObject() {
 	// TODO Auto-generated destructor stub
-	delete sprite;
-	delete coords;
+	delete sprite_;
+	delete coords_;
+}
+
+Sprite* GameObject::getSprite() {
+	return sprite_;
 }
 
