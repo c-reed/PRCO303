@@ -9,7 +9,8 @@
 #define TILE_H_
 
 
-#include "Vector2D.h"
+#include "Engine/Vector2D.h"
+#include "Sprite.h"
 
 
 typedef enum {
@@ -23,6 +24,12 @@ typedef enum {
 	TILE_NORTHWEST = 7
 } tile_dir;
 
+typedef enum {
+	TILE_STATUS_OPEN,
+	TILE_STATUS_WALL,
+	TILE_STATUS_FLOOR,
+	TILE_STATUS_DOOR
+} tile_status;
 
 class Tile {
 public:
@@ -38,13 +45,17 @@ public:
 	void setNWTile(Tile*);
 	Tile* getTile(tile_dir);
 	Vector2D* getCoords();
+	void setStatus(tile_status);
 
-	int weight;
 
 private:
-	Tile *nTile, *neTile, *eTile, *seTile, *sTile,
-	*swTile, *wTile, *nwTile;
-	Vector2D *coords;
+	int			id_, weight_;
+	Tile 		*nTile_, *neTile_, *eTile_, *seTile_, *sTile_,
+				*swTile_, *wTile_, *nwTile_;
+	Vector2D 	*coords_;
+	tile_status tileStatus_;
+	Sprite*		sprite_;
+
 
 };
 

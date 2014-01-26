@@ -44,7 +44,7 @@ bool Sprite::addAnimation(int y, int frames, float fps, bool animated) {
 
 	if (animIt < numAnimations) {
 
-		//animations[animIt] = {y, frames, 0, fps, animated};
+		animations[animIt] = {y, frames, 0, fps, animated};
 
 	} else {
 		return false;

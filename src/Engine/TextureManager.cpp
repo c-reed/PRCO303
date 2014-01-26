@@ -16,13 +16,12 @@ TextureManager* TextureManager::GetInstance() {
 			return instance;
 		} else
 			return instance;
-
 	}
 
 bool TextureManager::load(std::string filename, std::string id, SDL_Renderer* renderer) {
 
-	SDL_Surface* tempSurface = IMG_Load(filename.c_str());
 
+	SDL_Surface* tempSurface = IMG_Load(filename.c_str());
 
 	if (tempSurface == NULL)
 		return false;
@@ -41,20 +40,22 @@ bool TextureManager::load(std::string filename, std::string id, SDL_Renderer* re
 
 }
 
-void TextureManager::draw(std::string id, int x, int y, int width, int height,
-		int xFrame, int yFrame, SDL_Renderer* renderer, SDL_RendererFlip flip) {
+void TextureManager::draw(std::string ref, int x, int y, int width, int height,
+		int xFrame, int yFrame, float cameraScale, SDL_Renderer* renderer, SDL_RendererFlip flip) {
 
 	SDL_Rect srcRect, dstRect;
 
 	srcRect.x = width * xFrame;
 	srcRect.y = height * yFrame;
-	srcRect.w = dstRect.w = width;
-	srcRect.h = dstRect.h = height;
-	dstRect.x = x - width / 2;
-	dstRect.y = y - height / 2;
+	srcRect.w = width;
+	srcRect.h = height;
+	dstRect.w = 32 * cameraScale;
+	dstRect.h = 32 * cameraScale;
+	dstRect.x = (x - width / 2) * cameraScale;
+	dstRect.y = (y - height / 2) * cameraScale;
 
 
-	SDL_RenderCopyEx(renderer, textureMap[id], &srcRect, &dstRect,
-			0, 0, flip);
+	SDL_RenderCopyEx(renderer, textureMap[ref],
+			&srcRect, &dstRect, 0, 0, flip);
 
 }

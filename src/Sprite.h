@@ -10,7 +10,7 @@
 
 #include <iostream>
 #include <cstdlib>
-#include "TextureManager.h"
+#include "Engine/TextureManager.h"
 
 typedef struct {
 
@@ -30,10 +30,10 @@ typedef struct {
 class Sprite {
 public:
 	Sprite();
-	Sprite(std::string, int, int, int);
-	Sprite(std::string, int, int);
+	Sprite(std::string ref, int width, int height, int numAnimations);
+	Sprite(std::string ref, int width, int height);
 	void nextFrame();
-	bool addAnimation(int, int, float, bool);
+	bool addAnimation(int yDim, int numFrames, float fps, bool animated);
 	void setAnimation(int);
 	void setFrame(int);
 	std::string ref;

@@ -24,9 +24,9 @@ public:
 
 
 private:
-	int x, y;
 	void initTiles();
-	Tile** tileSet;
+	int xDim_, yDim_;
+	Tile** tileSet_;
 };
 
 #endif /* UNIVERSE_H_ */

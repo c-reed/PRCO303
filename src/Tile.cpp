@@ -7,18 +7,17 @@
 
 #include "Tile.h"
 
-Tile::Tile(int num, float x, float y) {
-	weight = num;
-	nTile = 0;
-	neTile = 0;
-	eTile = 0;
-	seTile = 0;
-	sTile = 0;
-	swTile = 0;
-	wTile = 0;
-	nwTile = 0;
+Tile::Tile(int num, float x, float y)	:	id_(num), weight_(0),
+											nTile_(0), neTile_(0), eTile_(0),
+											seTile_(0), sTile_(0), swTile_(0),
+											wTile_(0),nwTile_(0),
+											tileStatus_(TILE_STATUS_OPEN)
+{
+	coords_ = new Vector2D(x, y);
 
-	coords = new Vector2D(x, y);
+	sprite_ = new Sprite("tile", 32, 32, 1);
+			sprite_->addAnimation(0, 1, 0, false);
+			sprite_->setFrame(0);
 
 }
 
@@ -27,62 +26,63 @@ Tile::~Tile() {
 }
 
 void Tile::setNTile(Tile* tile) {
-	nTile = tile;
+	nTile_ = tile;
 }
 
 void Tile::setNETile(Tile* tile) {
-	neTile = tile;
+	neTile_ = tile;
 }
 
 void Tile::setETile(Tile* tile) {
-	eTile = tile;
+	eTile_ = tile;
 }
 
 void Tile::setSETile(Tile* tile) {
-	seTile = tile;
+	seTile_ = tile;
 }
 
 void Tile::setSTile(Tile* tile) {
-	sTile = tile;
+	sTile_ = tile;
 }
 
 void Tile::setSWTile(Tile* tile) {
-	swTile = tile;
+	swTile_ = tile;
 }
 
 void Tile::setWTile(Tile* tile) {
-	wTile = tile;
+	wTile_ = tile;
 }
 
 void Tile::setNWTile(Tile* tile) {
-	nwTile = tile;
+	nwTile_ = tile;
 }
 
 Tile* Tile::getTile(tile_dir dir) {
+
 	switch (dir) {
 	case TILE_NORTH:
-		return nTile;
+		return nTile_;
 		break;
 	case TILE_NORTHEAST:
-		return neTile;
+		return neTile_;
 		break;
 	case TILE_EAST:
-		return eTile;
+		return eTile_;
 		break;
 	case TILE_SOUTHEAST:
-		return seTile;
+		return seTile_;
 		break;
 	case TILE_SOUTH:
-		return sTile;
+		return sTile_;
 		break;
 	case TILE_SOUTHWEST:
-		return swTile;
+		return swTile_;
 		break;
 	case TILE_WEST:
-		return wTile;
+		return wTile_;
 		break;
 	case TILE_NORTHWEST:
-		return nwTile;
+		return nwTile_;
 		break;
 	default:
 		return 0;
@@ -90,5 +90,9 @@ Tile* Tile::getTile(tile_dir dir) {
 }
 
 Vector2D* Tile::getCoords() {
-	return coords;
+	return coords_;
+}
+
+void Tile::setStatus(tile_status tileStatus) {
+	tileStatus_ = tileStatus;
 }
