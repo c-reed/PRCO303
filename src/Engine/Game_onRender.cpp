@@ -38,7 +38,6 @@ void Game::onRender() {
 
 	}
 
-	//TODO Sort out these fucking sprite sizes
 	TextureManager::GetInstance()->draw(gobj->getSprite()->getRef(), pos.x, pos.y,
 										gobj->getSprite()->getWidth(), gobj->getSprite()->getHeight(),
 										gobj->getSprite()->getCurrentAnimation()->prog, gobj->getSprite()->getCurrentAnimation()->y,

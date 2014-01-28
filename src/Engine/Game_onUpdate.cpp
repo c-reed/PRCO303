@@ -14,6 +14,8 @@ void Game::onUpdate() {
 
 	updateGameTime();
 
+
+	std::cout << getFrameRate() << "\t" << getDeltaT() << std::endl;
 }
 
 
