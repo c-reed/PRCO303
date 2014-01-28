@@ -10,7 +10,7 @@
 
 #include "Tile.h"
 #include "Engine/Vector2D.h"
-#include "Sprite.h"
+#include "Engine/Sprite.h"
 
 /*
  * A GameObject represents any object that has a position and visual

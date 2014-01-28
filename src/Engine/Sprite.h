@@ -10,7 +10,7 @@
 
 #include <iostream>
 #include <cstdlib>
-#include "Engine/TextureManager.h"
+#include "TextureManager.h"
 
 typedef struct {
 
@@ -36,16 +36,18 @@ public:
 	bool addAnimation(int yDim, int numFrames, float fps, bool animated);
 	void setAnimation(int);
 	void setFrame(int);
-	std::string ref;
-	Animation *currentAnimation;
-	int width, height;
+	std::string getRef();
+	int getHeight();
+	int getWidth();
+	Animation* getCurrentAnimation();
 	virtual ~Sprite();
 
 private:
 	void init(std::string, int, int, int);
-	Animation *animations;
-	int numAnimations, animIt;
-	float scale;
+	Animation* animations_, * currentAnimation_;
+	int numAnimations_, animIt_, width_, height_;
+	float scale_;
+	std::string ref_;
 };
 
 #endif /* SPRITE_H_ */

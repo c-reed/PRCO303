@@ -48,7 +48,6 @@ private:
 	Universe*			universe_;
 	Camera*				camera_;
 	const Uint8*		keystates_; //TODO move to input handler class
-
 };
 
 #endif /* GAME_H_ */

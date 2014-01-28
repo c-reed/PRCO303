@@ -39,17 +39,17 @@ void Game::onRender() {
 	}
 
 	//TODO Sort out these fucking sprite sizes
-	TextureManager::GetInstance()->draw(gobj->getSprite()->ref, pos.x, pos.y,
-										gobj->getSprite()->width, gobj->getSprite()->height,
-										gobj->getSprite()->currentAnimation->prog, gobj->getSprite()->currentAnimation->y,
+	TextureManager::GetInstance()->draw(gobj->getSprite()->getRef(), pos.x, pos.y,
+										gobj->getSprite()->getWidth(), gobj->getSprite()->getHeight(),
+										gobj->getSprite()->getCurrentAnimation()->prog, gobj->getSprite()->getCurrentAnimation()->y,
 										camera_->getScale(), sdlRenderer_, SDL_FLIP_NONE);
 
 
 	pos = camera_->getDrawPos(new Vector2D(5.5f, 7.5f));
 
-	TextureManager::GetInstance()->draw(gobj->getSprite()->ref, pos.x, pos.y,
-										gobj->getSprite()->width, gobj->getSprite()->height,
-										gobj->getSprite()->currentAnimation->prog, gobj->getSprite()->currentAnimation->y,
+	TextureManager::GetInstance()->draw(gobj->getSprite()->getRef(), pos.x, pos.y,
+										gobj->getSprite()->getWidth(), gobj->getSprite()->getHeight(),
+										gobj->getSprite()->getCurrentAnimation()->prog, gobj->getSprite()->getCurrentAnimation()->y,
 										camera_->getScale(), sdlRenderer_, SDL_FLIP_NONE);
 
 
