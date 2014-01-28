@@ -27,11 +27,11 @@ bool Game::onInit() {
 	if (!TextureManager::GetInstance()->load("assets/placeholder_person.png", "placeholder_person", sdlRenderer_)) {
 		return false;
 	}
-	if (!TextureManager::GetInstance()->load("assets/tile.png", "tile", sdlRenderer_)) {
+	if (!TextureManager::GetInstance()->load("assets/tileSheet.png", "tile", sdlRenderer_)) {
 		return false;
 	}
 
-	universe_ = new Universe(128, 128);
+	universe_ = new Universe(50, 50);
 
 	Sprite* sprite = new Sprite("placeholder_person", 32, 32, 1);
 	sprite->addAnimation(0,1,0,false);
@@ -42,8 +42,6 @@ bool Game::onInit() {
 	camera_ = new Camera();
 	camera_->init(960, 540);
 	camera_->setPosition(10.0f, 10.0f);
-
-	keystates_ = SDL_GetKeyboardState(0);
 
 	//All went well
 	return true;

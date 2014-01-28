@@ -9,6 +9,7 @@
 
 void Game::onEvent(SDL_Event* event) {
 
+	keystates_ = SDL_GetKeyboardState(0);
 
 	if (event->type == SDL_QUIT)
 		isRunning_ = false;

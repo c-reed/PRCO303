@@ -29,11 +29,11 @@ void Game::onRender() {
 
 	//render tileset
 
-	for(int i = 0; i < 128 * 128; i++) {
+	for(int i = 0; i < 50 * 50; i++) {
 		Vector2D pos = camera_->getDrawPos(tileset[i]->getCoords());
 
 		TextureManager::GetInstance()->draw("tile", pos.x, pos.y,
-											32, 32,0, 0,
+											32, 32, 0, 0,
 											camera_->getScale(), sdlRenderer_, SDL_FLIP_NONE);
 
 	}
