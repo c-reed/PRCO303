@@ -7,14 +7,10 @@
 
 #include "Game.h"
 
-Game::Game() {
+Game::Game() :	isRunning_(true), sdlWindow_(0), sdlRenderer_(0), universe_(0),
+				camera_(0), gameTime_(0), lastGameTime_(0), deltaT_(0), keystates_(0)
+{
 
-	universe_ = 0;
-	sdlWindow_ = 0;
-	sdlRenderer_ = 0;
-	camera_ = 0;
-	keystates_ = 0;
-	isRunning_ = true;
 }
 
 Game::~Game() {
@@ -35,9 +31,6 @@ int Game::onExecute() {
 		}
 		onUpdate();
 		onRender();
-
-
-		SDL_Delay(10);
 	}
 
 	onCleanup();

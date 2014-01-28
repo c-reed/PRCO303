@@ -18,21 +18,15 @@ class Game {
 public:
 	Game();
 	virtual ~Game();
-	/*
-	 * Begin execution of the game
-	 */
-	int onExecute();
-	bool onInit();
-	/*
-	 * Check for and react to SDL Events
-	 */
-	void onEvent(SDL_Event*);
-	void onUpdate();
-	void onRender();
-	/*
-	 * Clean up before finishing
-	 */
-	void onCleanup();
+	int 	onExecute(); //Begin game loop
+	bool 	onInit();
+	void 	onEvent(SDL_Event*); //check for and handle SDL events
+	void 	onUpdate();
+	void 	onRender();
+	void 	onCleanup(); //finish up cleanly
+	void	updateGameTime();
+	Uint32	getGameTime();
+	Uint32 	getDeltaT();
 
 private:
 	/*
@@ -47,7 +41,9 @@ private:
 	SDL_Renderer*		sdlRenderer_;
 	Universe*			universe_;
 	Camera*				camera_;
+	Uint32				gameTime_, lastGameTime_, deltaT_;
 	const Uint8*		keystates_; //TODO move to input handler class
+
 };
 
 #endif /* GAME_H_ */

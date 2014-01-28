@@ -12,6 +12,7 @@
  */
 void Game::onUpdate() {
 
+	updateGameTime();
 
 }
 

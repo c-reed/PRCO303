@@ -45,9 +45,6 @@ bool Game::onInit() {
 
 	keystates_ = SDL_GetKeyboardState(0);
 
-
 	//All went well
 	return true;
 }
-
-
