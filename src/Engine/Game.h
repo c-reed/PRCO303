@@ -13,6 +13,12 @@
 #include "../Universe.h"
 #include "Camera.h"
 
+struct GameTime {
+	Uint32 current;
+	Uint32 last;
+	float deltaT;
+};
+
 
 class Game {
 public:
@@ -26,7 +32,8 @@ public:
 	void 	onCleanup(); //finish up cleanly
 	void	updateGameTime();
 	Uint32	getGameTime();
-	Uint32 	getDeltaT();
+	float 	getDeltaT();
+	int		getFrameRate(); //Rough idea only, very inaccurate. Good enough for me.
 
 private:
 	/*
@@ -41,8 +48,9 @@ private:
 	SDL_Renderer*		sdlRenderer_;
 	Universe*			universe_;
 	Camera*				camera_;
-	Uint32				gameTime_, lastGameTime_, deltaT_;
+	GameTime gameTime_;
 	const Uint8*		keystates_; //TODO move to input handler class
+
 
 };
 

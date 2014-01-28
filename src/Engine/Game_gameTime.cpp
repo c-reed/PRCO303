@@ -9,18 +9,25 @@
 
 void Game::updateGameTime() {
 
-	lastGameTime_ = gameTime_;
-	gameTime_ = SDL_GetTicks();
-
-	deltaT_ = gameTime_ - lastGameTime_;
+	gameTime_.last = gameTime_.current;
+	gameTime_.current = SDL_GetTicks();
+	gameTime_.deltaT = (float)(gameTime_.current - gameTime_.last) / 1000.0f;
 }
 
 Uint32 Game::getGameTime() {
-	return gameTime_;
+	return gameTime_.current;
 }
 
-Uint32 Game::getDeltaT() {
-	return deltaT_;
+float Game::getDeltaT() {
+	return gameTime_.deltaT;
 }
 
+int Game::getFrameRate() {
+
+	int framerate = 0;
+
+	framerate = (int)(1.0f / gameTime_.deltaT);
+
+	return framerate;
+}
 
