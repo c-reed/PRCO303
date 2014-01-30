@@ -11,7 +11,7 @@
 Camera::Camera() {
 	xRes_ = 0;
 	yRes_ = 0;
-	scale_ = 0.6f;
+	scale_ = 1.3f;
 	position_.x = 0.5f;
 	position_.y = 0.5f;
 }

@@ -31,7 +31,7 @@ bool Game::onInit() {
 		return false;
 	}
 
-	universe_ = new Universe(50, 50);
+	universe_ = new Universe(128, 128);
 
 	Sprite* sprite = new Sprite("placeholder_person", 32, 32, 1);
 	sprite->addAnimation(0,1,0,false);
@@ -41,7 +41,7 @@ bool Game::onInit() {
 
 	camera_ = new Camera();
 	camera_->init(960, 540);
-	camera_->setPosition(10.0f, 10.0f);
+	camera_->setPosition(25.0f, 25.0f);
 
 	//All went well
 	return true;
