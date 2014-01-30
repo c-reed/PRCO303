@@ -33,7 +33,7 @@ void Game::onRender() {
 		Vector2D pos = camera_->getDrawPos(tileset[i]->getCoords());
 
 		TextureManager::GetInstance()->draw("tile", pos.x, pos.y,
-											32, 32, 0, 0,
+											32, 32, 1, 0,
 											camera_->getScale(), sdlRenderer_, SDL_FLIP_NONE);
 
 	}
