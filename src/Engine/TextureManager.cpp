@@ -1,22 +1,17 @@
 /*
- * TextureManager.cpp
+ * SpriteManager.cpp
  *
- *  Created on: 1 Nov 2013
+ *  Created on: 4 Feb 2014
  *      Author: creed
  */
 
 #include "TextureManager.h"
 
-TextureManager* TextureManager::instance = 0;
+TextureManager::TextureManager() {
+}
 
-TextureManager* TextureManager::GetInstance() {
-
-		if(instance == 0) {
-			instance = new TextureManager();
-			return instance;
-		} else
-			return instance;
-	}
+TextureManager::~TextureManager() {
+}
 
 bool TextureManager::load(std::string filename, std::string id, SDL_Renderer* renderer) {
 
@@ -58,4 +53,8 @@ void TextureManager::draw(std::string ref, int x, int y, int width, int height,
 	SDL_RenderCopyEx(renderer, textureMap[ref],
 			&srcRect, &dstRect, 0, 0, flip);
 
+}
+
+std::map<std::string, SDL_Texture*> TextureManager::getTextureMap() {
+	return textureMap;
 }

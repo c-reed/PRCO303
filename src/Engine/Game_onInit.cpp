@@ -23,14 +23,20 @@ bool Game::onInit() {
 		return false;
 	}
 
+	//Initialise spriteManager and load textures
+	textureManager_ = new TextureManager();
 
-	if (!TextureManager::GetInstance()->load("assets/placeholder_person.png", "placeholder_person", sdlRenderer_)) {
+	if (!textureManager_->load("assets/placeholder_person.png", "placeholder_person", sdlRenderer_)) {
 		return false;
 	}
-	if (!TextureManager::GetInstance()->load("assets/tileSheet.png", "tile", sdlRenderer_)) {
+	if (!textureManager_->load("assets/tileSheet.png", "tile", sdlRenderer_)) {
 		return false;
 	}
 
+	//Set up text rendering stuff
+	textManager_ = new TextManager();
+
+	//create the universe the game takes place in
 	universe_ = new Universe(128, 128);
 
 	Sprite* sprite = new Sprite("placeholder_person", 32, 32, 1);

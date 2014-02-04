@@ -8,7 +8,7 @@
 #include "Game.h"
 
 Game::Game() :	isRunning_(true), sdlWindow_(0), sdlRenderer_(0), universe_(0),
-				camera_(0), keystates_(0)
+				camera_(0), keystates_(0), textureManager_(0), textManager_(0)
 {
 	gameTime_.current = 0;
 	gameTime_.last = 0;

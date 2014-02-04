@@ -6,7 +6,6 @@
  */
 
 #include "Game.h"
-#include "TextureManager.h"
 #include "Camera.h"
 
 /*
@@ -33,15 +32,15 @@ void Game::onRender() {
 
 		Vector2D pos = camera_->getDrawPos(tileset[i]->getCoords());
 
-		if (pos.x < 1100 && pos.x > -50 && pos.y < 590 && pos.y > -50)
+		if (pos.x < 1100 &&	pos.x > -50 && pos.y < 590 && pos.y > -50) //TODO scale cull with zoom
 		{
-		TextureManager::GetInstance()->draw("tile", pos.x, pos.y,
+		textureManager_->draw("tile", pos.x, pos.y,
 											32, 32, 1, 0,
 											camera_->getScale(), sdlRenderer_, SDL_FLIP_NONE);
 		}
 	}
 
-	TextureManager::GetInstance()->draw(gobj->getSprite()->getRef(), pos.x, pos.y,
+	textureManager_->draw(gobj->getSprite()->getRef(), pos.x, pos.y,
 										gobj->getSprite()->getWidth(), gobj->getSprite()->getHeight(),
 										gobj->getSprite()->getCurrentAnimation()->prog, gobj->getSprite()->getCurrentAnimation()->y,
 										camera_->getScale(), sdlRenderer_, SDL_FLIP_NONE);
@@ -49,7 +48,7 @@ void Game::onRender() {
 
 	pos = camera_->getDrawPos(new Vector2D(5.5f, 7.5f));
 
-	TextureManager::GetInstance()->draw(gobj->getSprite()->getRef(), pos.x, pos.y,
+	textureManager_->draw(gobj->getSprite()->getRef(), pos.x, pos.y,
 										gobj->getSprite()->getWidth(), gobj->getSprite()->getHeight(),
 										gobj->getSprite()->getCurrentAnimation()->prog, gobj->getSprite()->getCurrentAnimation()->y,
 										camera_->getScale(), sdlRenderer_, SDL_FLIP_NONE);

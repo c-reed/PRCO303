@@ -12,6 +12,8 @@
 
 #include "../Universe.h"
 #include "Camera.h"
+#include "TextureManager.h"
+#include "TextManager.h"
 
 struct GameTime {
 	Uint32 current;
@@ -48,7 +50,9 @@ private:
 	SDL_Renderer*		sdlRenderer_;
 	Universe*			universe_;
 	Camera*				camera_;
-	GameTime gameTime_;
+	GameTime 			gameTime_;
+	TextureManager*		textureManager_;
+	TextManager*		textManager_;
 	const Uint8*		keystates_; //TODO move to input handler class
 
 

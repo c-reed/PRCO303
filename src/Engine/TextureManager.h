@@ -1,7 +1,7 @@
 /*
- * TextureManager.h
+ * SpriteManager.h
  *
- *  Created on: 1 Nov 2013
+ *  Created on: 4 Feb 2014
  *      Author: creed
  */
 
@@ -14,22 +14,18 @@
 #include <map>
 
 
-//Singleton responsible for loading and storing textures
 class TextureManager {
 public:
-	static TextureManager* GetInstance();
+	TextureManager();
+	virtual ~TextureManager();
 	bool load(std::string filename, std::string ref,	SDL_Renderer* renderer);
 	void draw(std::string ref, int x, int y, int wdith, int height, int xFrame, int yFrame, float cameraScale, SDL_Renderer* renderer, SDL_RendererFlip flip);
-
-	/*
-	 * Used to store multiple textures mapped to a string for retrieval
-	 */
-	std::map<std::string, SDL_Texture*> textureMap;
+	std::map<std::string, SDL_Texture*> getTextureMap();
 
 private:
-	TextureManager() {};
-	virtual ~TextureManager() {};
-	static TextureManager* instance;
+	std::map<std::string, SDL_Texture*> textureMap;	//Used to store multiple textures mapped to a string for retrieval
+
+
 
 };
 
