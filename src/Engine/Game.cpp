@@ -13,6 +13,7 @@ Game::Game() :	isRunning_(true), sdlWindow_(0), sdlRenderer_(0), universe_(0),
 	gameTime_.current = 0;
 	gameTime_.last = 0;
 	gameTime_.deltaT = 0;
+	gameTime_.lastDeltaT = 0;
 }
 
 Game::~Game() {

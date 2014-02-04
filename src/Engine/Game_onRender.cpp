@@ -53,6 +53,9 @@ void Game::onRender() {
 										gobj->getSprite()->getCurrentAnimation()->prog, gobj->getSprite()->getCurrentAnimation()->y,
 										camera_->getScale(), sdlRenderer_, SDL_FLIP_NONE);
 
+	SDL_Color textColor = {0,0,0,255};
+	textManager_->renderText("The quick brown fox rusty gate blah blah blah", textColor, sdlRenderer_);
+
 
 	//Show what's been drawn
 	SDL_RenderPresent(sdlRenderer_);

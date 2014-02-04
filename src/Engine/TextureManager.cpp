@@ -11,6 +11,7 @@ TextureManager::TextureManager() {
 }
 
 TextureManager::~TextureManager() {
+	IMG_Quit();
 }
 
 bool TextureManager::load(std::string filename, std::string id, SDL_Renderer* renderer) {

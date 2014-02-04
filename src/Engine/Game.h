@@ -19,6 +19,7 @@ struct GameTime {
 	Uint32 current;
 	Uint32 last;
 	float deltaT;
+	float lastDeltaT;
 };
 
 

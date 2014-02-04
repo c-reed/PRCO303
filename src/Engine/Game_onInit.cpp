@@ -35,6 +35,7 @@ bool Game::onInit() {
 
 	//Set up text rendering stuff
 	textManager_ = new TextManager();
+	textManager_->init();
 
 	//create the universe the game takes place in
 	universe_ = new Universe(128, 128);
