@@ -13,24 +13,21 @@
  */
 void Game::onRender() {
 
-	SDL_SetRenderDrawColor(sdlRenderer_, 123,123,123,255);
+	SDL_SetRenderDrawColor(sdlRenderer_, 120, 120, 120, 255);
 
-	//clear the screen		SDL_RenderGetScale()
-
+	//clear the screen
 	SDL_RenderClear(sdlRenderer_);
 
-	Tile** tileset = universe_->getTileset();
 
-	GameObject* gobj = universe_->gameObjects.back();
 
-	Vector2D pos = camera_->getDrawPos(gobj->getPos());
+	Vector2D pos;
 
 
 	//render tileset
-
+	Tile** tileset = universe_->getTileset();
 	for(int i = 0; i < 128 * 128; i++) {
 
-		Vector2D pos = camera_->getDrawPos(tileset[i]->getCoords());
+		pos = camera_->getDrawPos(tileset[i]->getCoords());
 
 		if (pos.x < 1100 &&	pos.x > -50 && pos.y < 590 && pos.y > -50) //TODO scale cull with zoom
 		{
@@ -40,6 +37,9 @@ void Game::onRender() {
 		}
 	}
 
+	//render gameobjects
+	GameObject* gobj = universe_->gameObjects.back();
+	pos = camera_->getDrawPos(gobj->getPos());
 	textureManager_->draw(gobj->getSprite()->getRef(), pos.x, pos.y,
 										gobj->getSprite()->getWidth(), gobj->getSprite()->getHeight(),
 										gobj->getSprite()->getCurrentAnimation()->prog, gobj->getSprite()->getCurrentAnimation()->y,
@@ -47,7 +47,6 @@ void Game::onRender() {
 
 
 	pos = camera_->getDrawPos(new Vector2D(5.5f, 7.5f));
-
 	textureManager_->draw(gobj->getSprite()->getRef(), pos.x, pos.y,
 										gobj->getSprite()->getWidth(), gobj->getSprite()->getHeight(),
 										gobj->getSprite()->getCurrentAnimation()->prog, gobj->getSprite()->getCurrentAnimation()->y,
@@ -57,7 +56,7 @@ void Game::onRender() {
 //	textManager_->renderText("The quick brown fox rusty gate\nblah blah blah", textColor, sdlRenderer_);
 
 
-	//Show what's been drawn
+//	Show what's been drawn
 	SDL_RenderPresent(sdlRenderer_);
 }
 

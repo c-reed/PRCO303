@@ -20,8 +20,8 @@ public:
 	int getSizeX();
 	int getSizeY();
 	Tile** getTileset();
+	Tile* getTileAt(Vector2D* location);
 	std::vector<GameObject*> gameObjects;
-
 
 private:
 	void initTiles();

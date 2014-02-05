@@ -10,16 +10,19 @@
 void Game::onEvent(SDL_Event* event) {
 
 
+	static Vector2D* mousePos = new Vector2D(0,0);
+
 	switch (event->type)
 	{
 	case SDL_QUIT:
 		isRunning_ = false;
 		break;
 
-	case SDL_MOUSEMOTION:
-		break;
-
 	case SDL_MOUSEBUTTONDOWN:
+		mousePos->x = event->motion.x;
+		mousePos->y = event->motion.y;
+		std::cout << "MOUSE X: " << mousePos->x << std::endl;
+		std::cout << "MOUSE Y: " << mousePos->y << std::endl;
 		break;
 
 	case SDL_MOUSEBUTTONUP:
@@ -28,5 +31,6 @@ void Game::onEvent(SDL_Event* event) {
 	default:
 		break;
 	}
+
 
 }

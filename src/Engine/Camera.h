@@ -15,19 +15,21 @@
 
 class Camera {
 public:
-	Camera();
-	virtual ~Camera();
-	void setPosition(float, float);
-	Vector2D* getPosition();
-	void setScale(float);
-	Vector2D getDrawPos(Vector2D*);
-	float getScale();
-	void init(int,int);
+				Camera(int xRes, int yRes);
+	virtual 	~Camera();
+	void 		setPosition(float, float);
+	Vector2D* 	getPosition();
+	Vector2D 	getDrawPos(Vector2D*);
+	void 		setScale(float);
+	float 		getScale();
+	void 		moveCamera(Vector2D* movement);
+	void 		zoomCameraIn();
+	void 		zoomCameraOut();
 
 private:
-	Vector2D position_;
-	float scale_;
-	int xRes_, yRes_;
+	Vector2D 	position_;
+	float 		scale_;
+	int 		xRes_, yRes_;
 };
 
 #endif /* CAMERA_H_ */

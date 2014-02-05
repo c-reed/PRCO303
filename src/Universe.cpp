@@ -23,69 +23,6 @@ Universe::Universe(int x, int y) {
 	}
 
 	initTiles();
-
-	/* Test grid - text output
-	for (int i = 0; i < x * y; i++) {
-
-		Tile* n;
-		Tile* ne;
-		Tile* e;
-		Tile* se;
-		Tile* s;
-		Tile* sw;
-		Tile* w;
-		Tile* nw;
-
-		printf("\nTile: %d\n", tileSet[i]->weight);
-
-		if((n = tileSet[i]->getTile(TILE_NORTH)) != 0) {
-			printf("North: %d\n", n->weight);
-		} else {
-			printf("North: NO TILE\n");
-		}
-
-		if((ne = tileSet[i]->getTile(TILE_NORTHEAST)) != 0) {
-			printf("North East: %d\n", ne->weight);
-		} else {
-			printf("North East: NO TILE\n");
-		}
-
-		if((e = tileSet[i]->getTile(TILE_EAST)) != 0) {
-			printf("East: %d\n", e->weight);
-		} else {
-			printf("East: NO TILE\n");
-		}
-
-		if((se = tileSet[i]->getTile(TILE_SOUTHEAST)) != 0) {
-			printf("South East: %d\n", se->weight);
-		} else {
-			printf("South East: NO TILE\n");
-		}
-
-		if((s = tileSet[i]->getTile(TILE_SOUTH)) != 0) {
-			printf("South: %d\n", s->weight);
-		} else {
-			printf("South: NO TILE\n");
-		}
-
-		if((sw = tileSet[i]->getTile(TILE_SOUTHWEST)) != 0) {
-			printf("South West: %d\n", sw->weight);
-		} else {
-			printf("South West: NO TILE\n");
-		}
-
-		if((w = tileSet[i]->getTile(TILE_WEST)) != 0) {
-			printf("West: %d\n", w->weight);
-		} else {
-			printf("West: NO TILE\n");
-		}
-
-		if((nw = tileSet[i]->getTile(TILE_NORTHWEST)) != 0) {
-			printf("North West: %d\n", nw->weight);
-		} else {
-			printf("North West: NO TILE\n");
-		}
-	}*/
 }
 
 Universe::~Universe() {

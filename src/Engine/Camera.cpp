@@ -8,17 +8,12 @@
 #include "Camera.h"
 
 
-Camera::Camera() {
-	xRes_ = 0;
-	yRes_ = 0;
-	scale_ = 1.3f;
+Camera::Camera(int xRes, int yRes)	:	scale_(1.0f), xRes_(xRes), yRes_(yRes) {
 	position_.x = 0.5f;
 	position_.y = 0.5f;
 }
 
-
 Camera::~Camera() {
-	// TODO Auto-generated destructor stub
 }
 
 void Camera::setPosition(float x, float y) {
@@ -58,8 +53,16 @@ Vector2D Camera::getDrawPos(Vector2D* coords) {
 	return drawPos;
 }
 
-void Camera::init(int x,int y) {
-	this->xRes_ = x;
-	this->yRes_ = y;
+void Camera::moveCamera(Vector2D* movement) {
+
+	Vector2D newPos(position_.x + movement->x, position_.y + movement->y);
+
+	if (newPos.x < (CAMERA_WIDTH / 2) - 2.5f)
+		newPos.x = (CAMERA_WIDTH / 2) - 2.5f;
+	else if (newPos.x > 130.5f - (CAMERA_WIDTH / 2))
+		newPos.x = 130.5f - (CAMERA_WIDTH / 2);
+;
+
+	position_ = newPos;
 }
 

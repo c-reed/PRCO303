@@ -19,14 +19,15 @@
 class GameObject {
 public:
 	GameObject(Tile*, Sprite*);
-	Vector2D* getPos();
 	virtual ~GameObject();
 	Sprite* getSprite();
+	Vector2D* getPos();
+	Tile* getTile();
+	void move(Tile* newLocation);
 
 private:
-	Tile *location_;
-	Vector2D *coords_;
-	Sprite *sprite_;
+	Tile*			location_;
+	Sprite*			sprite_;
 };
 
 #endif /* GAMEOBJECT_H_ */
