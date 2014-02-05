@@ -20,12 +20,12 @@ bool Game::onInit() {
 
 	//Create a window and renderer in one go
 	if (SDL_CreateWindowAndRenderer(960, 540, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL, &sdlWindow_, &sdlRenderer_) < 0) {
+		std::cout << "**Something went terribly wrong.\n" << SDL_GetError() << std::endl;
 		return false;
 	}
 
 	//Initialise spriteManager and load textures
 	textureManager_ = new TextureManager();
-
 	if (!textureManager_->load("assets/placeholder_person.png", "placeholder_person", sdlRenderer_)) {
 		return false;
 	}
@@ -33,7 +33,7 @@ bool Game::onInit() {
 		return false;
 	}
 
-	//Set up text rendering stuff
+	//Set up text rendering system
 	textManager_ = new TextManager();
 	textManager_->init();
 
