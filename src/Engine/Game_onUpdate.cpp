@@ -37,11 +37,14 @@ void Game::onUpdate() {
 			Vector2D movement(0, 5.f*gameTime_.deltaT);
 			camera_->moveCamera(&movement);
 		}
-		if (keystates_[SDL_SCANCODE_0] == 1)
+		if (keystates_[SDL_SCANCODE_0] == 1) {
 			camera_->setScale(camera_->getScale() + 0.025f);
-
-		if (keystates_[SDL_SCANCODE_1] == 1)
+			std::cout << "scale set: " << camera_->getScale() << std::endl;
+		}
+		if (keystates_[SDL_SCANCODE_1] == 1) {
 			camera_->setScale(camera_->getScale() - 0.025f);
+			std::cout << "scale set: " << camera_->getScale() << std::endl;
+		}
 	}
 }
 

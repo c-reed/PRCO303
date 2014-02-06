@@ -10,8 +10,9 @@
 
 #define CAMERA_WIDTH 32
 
-
 #include "Vector2D.h"
+#include <iostream>
+#include <cstdio>
 
 class Camera {
 public:
@@ -23,13 +24,13 @@ public:
 	void 		setScale(float);
 	float 		getScale();
 	void 		moveCamera(Vector2D* movement);
-	void 		zoomCameraIn();
-	void 		zoomCameraOut();
+	void 		zoomCamera(int step);
 
 private:
-	Vector2D 	position_;
-	float 		scale_;
-	int 		xRes_, yRes_;
+	Vector2D 		position_;
+	float 			scale_;
+	int 			xRes_, yRes_;
+	const float		aRatio_;
 };
 
 #endif /* CAMERA_H_ */

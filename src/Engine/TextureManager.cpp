@@ -45,10 +45,10 @@ void TextureManager::draw(std::string ref, int x, int y, int width, int height,
 	srcRect.y = height * yFrame;
 	srcRect.w = width;
 	srcRect.h = height;
-	dstRect.w = 32 * cameraScale;
-	dstRect.h = 32 * cameraScale;
-	dstRect.x = (x - width / 2) * cameraScale;
-	dstRect.y = (y - height / 2) * cameraScale;
+	dstRect.w = 32 / cameraScale;
+	dstRect.h = 32 / cameraScale;
+	dstRect.x = (x - width / 2);
+	dstRect.y = (y - height / 2);
 
 
 	SDL_RenderCopyEx(renderer, textureMap[ref],
