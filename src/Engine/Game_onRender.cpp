@@ -33,7 +33,7 @@ void Game::onRender() {
 		{
 		textureManager_->draw("tile", pos.x, pos.y,
 											32, 32, 1, 0,
-											camera_->getScale(), sdlRenderer_, SDL_FLIP_NONE);
+											camera_, sdlRenderer_, SDL_FLIP_NONE);
 		}
 	}
 
@@ -43,14 +43,14 @@ void Game::onRender() {
 	textureManager_->draw(gobj->getSprite()->getRef(), pos.x, pos.y,
 										gobj->getSprite()->getWidth(), gobj->getSprite()->getHeight(),
 										gobj->getSprite()->getCurrentAnimation()->prog, gobj->getSprite()->getCurrentAnimation()->y,
-										camera_->getScale(), sdlRenderer_, SDL_FLIP_NONE);
+										camera_, sdlRenderer_, SDL_FLIP_NONE);
 
 
 	pos = camera_->getDrawPos(new Vector2D(5.5f, 7.5f));
 	textureManager_->draw(gobj->getSprite()->getRef(), pos.x, pos.y,
 										gobj->getSprite()->getWidth(), gobj->getSprite()->getHeight(),
 										gobj->getSprite()->getCurrentAnimation()->prog, gobj->getSprite()->getCurrentAnimation()->y,
-										camera_->getScale(), sdlRenderer_, SDL_FLIP_NONE);
+										camera_, sdlRenderer_, SDL_FLIP_NONE);
 
 //	SDL_Color textColor = {0,0,0,255};
 //	textManager_->renderText("The quick brown fox rusty gate\nblah blah blah", textColor, sdlRenderer_);

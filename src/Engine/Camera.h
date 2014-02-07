@@ -20,17 +20,21 @@ public:
 	virtual 	~Camera();
 	void 		setPosition(float, float);
 	Vector2D* 	getPosition();
-	Vector2D 	getDrawPos(Vector2D*);
-	void 		setScale(float);
-	float 		getScale();
+	Vector2D 	getDrawPos(Vector2D* coords);
+	Vector2D	getWorldXYFromScreenXY(int x, int y);
+	float 		getSizeX();
+	float 		getSizeY();
+	void		zoomIn();
+	void		zoomOut();
 	void 		moveCamera(Vector2D* movement);
-	void 		zoomCamera(int step);
 
 private:
+	void 			setSizeX(float width);
 	Vector2D 		position_;
-	float 			scale_;
+	float 			cameraWidth_;
 	int 			xRes_, yRes_;
 	const float		aRatio_;
+
 };
 
 #endif /* CAMERA_H_ */

@@ -38,12 +38,12 @@ void Game::onUpdate() {
 			camera_->moveCamera(&movement);
 		}
 		if (keystates_[SDL_SCANCODE_0] == 1) {
-			camera_->setScale(camera_->getScale() + 0.025f);
-			std::cout << "scale set: " << camera_->getScale() << std::endl;
+			camera_->zoomIn();
+			std::cout << "scale set: " << camera_->getSizeX() << std::endl;
 		}
 		if (keystates_[SDL_SCANCODE_1] == 1) {
-			camera_->setScale(camera_->getScale() - 0.025f);
-			std::cout << "scale set: " << camera_->getScale() << std::endl;
+			camera_->zoomOut();
+			std::cout << "scale set: " << camera_->getSizeX() << std::endl;
 		}
 	}
 }

@@ -37,7 +37,7 @@ bool TextureManager::load(std::string filename, std::string id, SDL_Renderer* re
 }
 
 void TextureManager::draw(std::string ref, int x, int y, int width, int height,
-		int xFrame, int yFrame, float cameraScale, SDL_Renderer* renderer, SDL_RendererFlip flip) {
+		int xFrame, int yFrame, Camera* camera, SDL_Renderer* renderer, SDL_RendererFlip flip) {
 
 	SDL_Rect srcRect, dstRect;
 
@@ -45,8 +45,8 @@ void TextureManager::draw(std::string ref, int x, int y, int width, int height,
 	srcRect.y = height * yFrame;
 	srcRect.w = width;
 	srcRect.h = height;
-	dstRect.w = 32 / cameraScale;
-	dstRect.h = 32 / cameraScale;
+	dstRect.w = 960 / camera->getSizeX();
+	dstRect.h = 540 / camera->getSizeY();
 	dstRect.x = (x - width / 2);
 	dstRect.y = (y - height / 2);
 

@@ -8,9 +8,11 @@
 #include "Camera.h"
 
 
-Camera::Camera(int xRes, int yRes)	:	position_{0.5f, 0.5f}, scale_(1.0f), xRes_(xRes), yRes_(yRes),
+Camera::Camera(int xRes, int yRes)	:	cameraWidth_(32.0f), xRes_(xRes), yRes_(yRes),
 										aRatio_((float)xRes / yRes)
 {
+	position_.x = 0.5f;
+	position_.y = 0.5f;
 }
 
 Camera::~Camera() {
@@ -25,56 +27,64 @@ Vector2D* Camera::getPosition() {
 	return &position_;
 }
 
-void Camera::setScale(float scale) {
-	scale_ = scale;
+void Camera::setSizeX(float width) {
+	cameraWidth_ = width;
 
-	if (scale_ > 2.5f)
-		scale_ = 2.5f;
+	if (cameraWidth_ > 64)
+		cameraWidth_ = 64;
 
-	if (scale < 0.2f)
-		scale_ = 0.2f;
+	if (cameraWidth_ < 10)
+		cameraWidth_ = 10;
 
 	//Use a blank vector to move the camera 0 spaces, checking the new zoom
 	//doesn't overlap the edge of the map
 	Vector2D* move0 = new Vector2D(0, 0);
 	moveCamera(move0);
 	delete move0;
-
-
 }
 
-float Camera::getScale() {
-	return scale_;
+float Camera::getSizeX() {
+	return cameraWidth_;
+}
+
+float Camera::getSizeY() {
+	return cameraWidth_ / aRatio_;
 }
 
 Vector2D Camera::getDrawPos(Vector2D* coords) {
 
-
-	float ratio = xRes_ / (CAMERA_WIDTH * scale_);
+	float ratio = xRes_ / cameraWidth_;
 
 	int x, y;
 	float xtemp, ytemp;
 
-	xtemp = coords->x - position_.x;
-	ytemp = coords->y - position_.y;
+	xtemp = cameraWidth_ + coords->x - position_.x;
+	ytemp = (cameraWidth_ / aRatio_) + coords->y - position_.y;
 
+	x = xtemp * ratio;
+	y = ytemp * ratio;
+
+	/*
 	x = (xRes_ / 2);
 	x += (xtemp * ratio);
 	y = (yRes_ / 2);
 	y += (ytemp * ratio);
-
+*/
 	Vector2D drawPos ((int)x, (int)y);
 
 	return drawPos;
 }
+void Camera::zoomIn() {
+	setSizeX(cameraWidth_ + 0.25f);
+}
 
-void Camera::zoomCamera(int step) {
-
+void Camera::zoomOut() {
+	setSizeX(cameraWidth_ - 0.25f);
 }
 
 void Camera::moveCamera(Vector2D* movement) {
 
-	float cWidth = CAMERA_WIDTH * scale_;
+	float cWidth = cameraWidth_;
 	float cHeight = cWidth / aRatio_;
 
 	Vector2D newPos(position_.x + movement->x, position_.y + movement->y);
@@ -88,7 +98,6 @@ void Camera::moveCamera(Vector2D* movement) {
 		newPos.y = (cHeight / 2) - 2.5f;
 	else if (newPos.y > 130.5f - (cHeight / 2))
 		newPos.y = 130.5f - (cHeight / 2);
-
 
 	position_ = newPos;
 

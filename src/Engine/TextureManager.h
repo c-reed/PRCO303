@@ -12,6 +12,7 @@
 #include <SDL2/SDL_image.h>
 #include <iostream>
 #include <map>
+#include "Camera.h"
 
 
 class TextureManager {
@@ -19,7 +20,7 @@ public:
 	TextureManager();
 	virtual ~TextureManager();
 	bool load(std::string filename, std::string ref,	SDL_Renderer* renderer);
-	void draw(std::string ref, int x, int y, int wdith, int height, int xFrame, int yFrame, float cameraScale, SDL_Renderer* renderer, SDL_RendererFlip flip);
+	void draw(std::string ref, int x, int y, int wdith, int height, int xFrame, int yFrame, Camera* camera, SDL_Renderer* renderer, SDL_RendererFlip flip);
 	std::map<std::string, SDL_Texture*> getTextureMap();
 
 private:
