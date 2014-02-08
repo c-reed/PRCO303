@@ -58,18 +58,12 @@ Vector2D Camera::getDrawPos(Vector2D* coords) {
 	int x, y;
 	float xtemp, ytemp;
 
-	xtemp = cameraWidth_ + coords->x - position_.x;
-	ytemp = (cameraWidth_ / aRatio_) + coords->y - position_.y;
+	xtemp = (cameraWidth_ / 2) + coords->x - position_.x;
+	ytemp = ((cameraWidth_ / aRatio_) / 2) + coords->y - position_.y;
 
 	x = xtemp * ratio;
 	y = ytemp * ratio;
 
-	/*
-	x = (xRes_ / 2);
-	x += (xtemp * ratio);
-	y = (yRes_ / 2);
-	y += (ytemp * ratio);
-*/
 	Vector2D drawPos ((int)x, (int)y);
 
 	return drawPos;
@@ -91,16 +85,14 @@ void Camera::moveCamera(Vector2D* movement) {
 
 	if (newPos.x < (cWidth / 2) - 2.5f)
 		newPos.x = (cWidth / 2) - 2.5f;
-	else if (newPos.x > 130.5f - (cWidth / 2))
-		newPos.x = 130.5f - (cWidth / 2);
+	else if (newPos.x > 129.5f - (cWidth / 2))
+		newPos.x = 129.5f - (cWidth / 2);
 
 	if (newPos.y < (cHeight / 2) - 2.5f)
 		newPos.y = (cHeight / 2) - 2.5f;
-	else if (newPos.y > 130.5f - (cHeight / 2))
-		newPos.y = 130.5f - (cHeight / 2);
+	else if (newPos.y > 129.5f - (cHeight / 2))
+		newPos.y = 129.5f - (cHeight / 2);
 
 	position_ = newPos;
-
-	std::cout << "pos: " << newPos.x << " " << newPos.y << std::endl;
 }
 

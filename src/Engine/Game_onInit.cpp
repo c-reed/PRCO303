@@ -47,7 +47,7 @@ bool Game::onInit() {
 	universe_->gameObjects.push_back(new GameObject(universe_->getTileset()[130], sprite));
 
 	camera_ = new Camera(960, 540);
-	camera_->setPosition(25.0f, 25.0f);
+	camera_->setPosition(0.5f, 0.5f);
 
 	//All went well
 	return true;
