@@ -22,7 +22,10 @@ Tile::Tile(int num, float x, float y)	:	id_(num), weight_(0),
 }
 
 Tile::~Tile() {
-	// TODO Auto-generated  stub
+	delete coords_;
+	delete sprite_;
+	sprite_ = 0;
+	coords_ = 0;
 }
 
 void Tile::setNTile(Tile* tile) {

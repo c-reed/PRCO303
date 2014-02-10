@@ -19,6 +19,7 @@ class Agent : public GameObject {
 public:
 	Agent(Tile*, Sprite*);
 	virtual ~Agent();
+	void move(Tile* target);
 };
 
 #endif /* AGENT_H_ */
