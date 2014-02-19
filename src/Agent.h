@@ -10,16 +10,16 @@
 
 
 #include "GameObject.h"
+#include "Engine/Pathing.h"
 
 /*
  * A GameObject derived class representing entities that can move
- * and think.
+ * and "think".
  */
-class Agent : public GameObject {
+class Agent {
 public:
 	Agent(Tile*, Sprite*);
 	virtual ~Agent();
-	void move(Tile* target);
 };
 
 #endif /* AGENT_H_ */

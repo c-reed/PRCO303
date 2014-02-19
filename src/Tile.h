@@ -8,7 +8,7 @@
 #ifndef TILE_H_
 #define TILE_H_
 
-
+#include <map>
 #include "Engine/Vector2D.h"
 #include "Engine/Sprite.h"
 
@@ -34,28 +34,39 @@ typedef enum {
 
 class Tile {
 public:
-	Tile(int, float, float);
-	virtual ~Tile();
-	void setNTile(Tile*);
-	void setNETile(Tile*);
-	void setETile(Tile*);
-	void setSETile(Tile*);
-	void setSTile(Tile*);
-	void setSWTile(Tile*);
-	void setWTile(Tile*);
-	void setNWTile(Tile*);
-	Tile* getTile(tile_dir);
-	Vector2D* getCoords();
-	void setStatus(tile_status);
+					Tile(int num, int tilesetX, int tilesetY);
+	virtual 		~Tile();
+	void 			setNTile(Tile*);
+	void 			setNETile(Tile*);
+	void 			setETile(Tile*);
+	void 			setSETile(Tile*);
+	void 			setSTile(Tile*);
+	void 			setSWTile(Tile*);
+	void 			setWTile(Tile*);
+	void 			setNWTile(Tile*);
+	Tile* 			getTile(tile_dir);
+	/*
+	 * Returns a pointer to a Vector2D object containing the X and Y
+	 * world coordinates the tile exists at
+	 */
+	Vector2D* 		getCoords();
+	void 			setStatus(tile_status);
+	/*
+	 * Pre-calculate H-costs (manhattan method) for all tiles in grid
+	 */
+	void			calculateHCostMap(Tile** tileset, int size);
+	int				calculateHCost(Tile* target);
 
 
 private:
-	int			id_, weight_;
-	Tile 		*nTile_, *neTile_, *eTile_, *seTile_, *sTile_,
-				*swTile_, *wTile_, *nwTile_;
-	Vector2D 	*coords_;
-	tile_status tileStatus_;
-	Sprite*		sprite_;
+
+	int					id_, weight_;
+	Tile* 				nTile_,* neTile_,* eTile_,* seTile_,* sTile_,
+						* swTile_,* wTile_,* nwTile_;
+	int*				hCostMap_;
+	Vector2D*			worldCoords_,* gridCoords_;
+	tile_status 		tileStatus_;
+	Sprite*				sprite_;
 
 
 };

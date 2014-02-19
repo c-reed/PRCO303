@@ -17,8 +17,6 @@ Universe::Universe(int x, int y) {
 	tileSet_ = new Tile*[xDim_ * yDim_];
 
 	for (int i = 0; i < xDim_ * yDim_; i++) {
-		float x = 0.5f + (float)(i % xDim_);
-		float y = 0.5f + (float)(i / yDim_);
 		tileSet_[i] = new Tile(i, x, y);
 	}
 
@@ -26,7 +24,6 @@ Universe::Universe(int x, int y) {
 }
 
 Universe::~Universe() {
-	// TODO Auto-generated destructor stub
 }
 
 void Universe::initTiles() {
@@ -77,7 +74,6 @@ void Universe::initTiles() {
 			tileSet_[i]->setWTile(tileSet_[wTile]);
 		}
 
-
 		//shift everything along one
 		nwTile++;
 		nTile++;
@@ -88,7 +84,10 @@ void Universe::initTiles() {
 		swTile++;
 		wTile++;
 
+		//Then calculate the Heuristic costs for that tile
+		tileSet_[i]->calculateHCostMap(tileSet_, xDim_ * yDim_);
 	}
+
 }
 
 int Universe::getSizeX() {

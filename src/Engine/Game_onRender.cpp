@@ -29,7 +29,7 @@ void Game::onRender() {
 
 		pos = camera_->getDrawPos(tileset[i]->getCoords());
 
-		if (pos.x < 1100 &&	pos.x > -50 && pos.y < 590 && pos.y > -50) //TODO scale cull with zoom
+		if (pos.x < 1100 &&	pos.x > -50 && pos.y < 590 && pos.y > -50)
 		{
 		textureManager_->draw("tile", pos.x, pos.y,
 											32, 32, 1, 0,

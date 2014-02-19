@@ -8,7 +8,7 @@
 #include "Agent.h"
 
 
-Agent::Agent(Tile* location, Sprite* sprite) : GameObject(location, sprite) {
+Agent::Agent(Tile* location, Sprite* sprite) {
 }
 
 Agent::~Agent() {
