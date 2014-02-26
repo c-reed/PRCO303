@@ -9,24 +9,28 @@
 #define PATHING_H_
 
 #include <vector>
-#include "../Tile.h"
+#include "../../Tile.h"
 
 class Pathing {
 public:
-	Pathing();
 	virtual ~Pathing();
+
+	void setTargetNode(Tile* target);
 	/*
 	 * Finds path between start and end points and returns a sequence of nodes
 	 * connecting the two points. Returns null if no path is possible
 	 */
-	std::vector<Tile*>* findPath(Tile* start, Tile* end);
+	Tile** findPath(Tile* start, Tile* end);
 
 private:
-	Tile*	currentTarget;
-	Tile*	currentNode;
-	Tile**	openNodeList;
-	Tile**	closedNodeList;
-	Tile** 	nodePath;
+	std::vector<Tile*>	openList;
+	std::vector<Tile*>	closedList;
+	std::vector<Tile*>	fCostMap;
+
+	void 	addToClosedList(Tile* tile);
+	int		getIndexOfInList(Tile* tile, std::vector<Tile*>* list);
+
+	Tile*	findLowestCostNode();
 };
 
 #endif /* PATHING_H_ */

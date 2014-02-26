@@ -127,7 +127,7 @@ void Tile::calculateHCostMap(Tile** tileset, int numTiles) {
 			deltaY *= -1;
 
 
-		hCostMap_[i] = deltaX + deltaY;
+		hCostMap_[i] = (deltaX + deltaY) * 10;
 
 	//	std::cout << id_ << " = " << hCostMap_[i] << std::endl;
 	}

@@ -10,13 +10,13 @@
 
 
 #include "GameObject.h"
-#include "Engine/Pathing.h"
+#include "Engine/Pathfinding/Pathing.h"
 
 /*
  * A GameObject derived class representing entities that can move
  * and "think".
  */
-class Agent {
+class Agent : public GameObject, Pathing {
 public:
 	Agent(Tile*, Sprite*);
 	virtual ~Agent();

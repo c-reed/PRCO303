@@ -8,12 +8,11 @@
 #include "GameObject.h"
 
 
-GameObject::GameObject(Tile* location, Sprite* sprite)	:	 location_(location), sprite_(sprite)
-{
-}
+GameObject::GameObject(Tile* location, Sprite* sprite)	:	 location_(location), sprite_(sprite) {}
 
 GameObject::~GameObject() {
 	delete sprite_;
+	sprite_ = 0;
 }
 
 Vector2D* GameObject::getPos() {
