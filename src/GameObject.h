@@ -25,7 +25,7 @@ public:
 	Tile* getTile();
 	void move(Tile* newLocation);
 
-private:
+protected:
 	Tile*			location_;
 	Sprite*			sprite_;
 };

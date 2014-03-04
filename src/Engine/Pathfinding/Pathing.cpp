@@ -43,11 +43,7 @@ Tile** Pathing::findPath(Tile* start, Tile* end) {
 		addToClosedList(bestNode->tile);
 	}
 
-
-
-
-	//backtrack from end to start via closed list, copy into array to return
-	return 0;
+	return tracePath();
 }
 
 void Pathing::addToClosedList(Tile* tile) {
@@ -87,7 +83,7 @@ Tile** Pathing::tracePath() {
 	Tile* currentTile = target_;
 
 	while(currentTile != origin_) {
-		tempList.push_back(currentTile);
+		tempList.insert(tempList.begin(), currentTile);
 
 		currentTile = closedList_[currentTile->getID()].parent;
 	}

@@ -13,6 +13,8 @@ Agent::Agent(Tile* location, Sprite* sprite) : GameObject(location, sprite)
 }
 
 Agent::~Agent() {
-	// TODO Auto-generated destructor stub
 }
 
+void Agent::addTask(std::string name, Tile** path) {
+	currentTask_ = {"placeholder task", path};
+}

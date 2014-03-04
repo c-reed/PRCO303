@@ -45,7 +45,8 @@ bool Game::onInit() {
 	sprite->addAnimation(0,1,0,false);
 	sprite->setFrame(1);
 
-	universe_->gameObjects.push_back(new GameObject(universe_->getTileset()[130], sprite));
+	//TODO REMOVE; temporary for testing
+	universe_->gameObjects.push_back(new Agent(universe_->getTileset()[130], sprite));
 	universe_->getTileset()[135]->setStatus(TILE_STATUS_BLOCKED);
 	universe_->getTileset()[135 - 128]->setStatus(TILE_STATUS_BLOCKED);
 	universe_->getTileset()[135 + 128]->setStatus(TILE_STATUS_BLOCKED);

@@ -11,6 +11,7 @@
 
 #include "GameObject.h"
 #include "Engine/Pathfinding/Pathing.h"
+#include "Task.h"
 
 /*
  * A GameObject derived class representing entities that can move
@@ -20,6 +21,10 @@ class Agent : public GameObject, Pathing {
 public:
 	Agent(Tile*, Sprite*);
 	virtual ~Agent();
+	void addTask(std::string name, Tile** path);
+	void performTask();
+private:
+	Task currentTask_; //TODO turn this into an ordered list or something
 };
 
 #endif /* AGENT_H_ */
