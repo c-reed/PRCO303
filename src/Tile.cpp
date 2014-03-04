@@ -11,8 +11,12 @@ Tile::Tile(int id, int tilesetX, int tilesetY)	:	id_(id), weight_(0), nTile_(0),
 													seTile_(0), sTile_(0), swTile_(0), wTile_(0),nwTile_(0),
 													hCostMap_(0), tileStatus_(TILE_STATUS_OPEN)
 {
-	float x = (float)(id % tilesetX);
-	float y = (float)(id / tilesetY);
+
+	tilesetX_ = tilesetX;
+	tilesetY_ = tilesetY;
+
+	float x = (float)(id % tilesetX_);
+	float y = (float)(id / tilesetY_);
 
 	gridCoords_ = new Vector2D(x, y);
 	worldCoords_ = new Vector2D(x + 0.5f, y + 0.5f);
@@ -101,10 +105,74 @@ Vector2D* Tile::getCoords() {
 	return worldCoords_;
 }
 
+int Tile::getID() {
+	return id_;
+}
+
+Tile* Tile::getNeighbour(tile_dir direction) {
+
+	Tile* neighbour = 0;
+
+	switch (direction)
+	{
+	case TILE_NORTHWEST:
+		neighbour = nwTile_;
+		break;
+
+	case TILE_NORTH:
+		neighbour = nTile_;
+		break;
+
+	case TILE_NORTHEAST:
+		neighbour = neTile_;
+		break;
+
+	case TILE_EAST:
+		neighbour = eTile_;
+		break;
+
+	case TILE_SOUTHEAST:
+		neighbour = seTile_;
+		break;
+
+	case TILE_SOUTH:
+		neighbour = sTile_;
+		break;
+
+	case TILE_SOUTHWEST:
+		neighbour = swTile_;
+		break;
+
+	case TILE_WEST:
+		neighbour = wTile_;
+		break;
+
+	default:
+		break;
+	}
+
+	return neighbour;
+}
+
+int Tile::getNeighbourID(tile_dir direction) {
+	Tile* neighbour;
+
+	if ((neighbour = getNeighbour(direction)))
+		return neighbour->getID();
+	else
+		return -1;
+}
+
 void Tile::setStatus(tile_status tileStatus) {
 	tileStatus_ = tileStatus;
 }
 
+bool Tile::isTraversable() {
+	if (tileStatus_ == TILE_STATUS_BLOCKED)
+		return false;
+
+	return true;
+}
 void Tile::calculateHCostMap(Tile** tileset, int numTiles) {
 
 	//std::cout << "\nDoing H-costs for tile: " << id_ << std::endl;
@@ -135,6 +203,8 @@ void Tile::calculateHCostMap(Tile** tileset, int numTiles) {
 
 int Tile::calculateHCost(Tile* target) {
 
+	//ignoring G (directional movement) costs at this time
+
 	int deltaX = 0;
 	int deltaY = 0;
 
@@ -149,4 +219,8 @@ int Tile::calculateHCost(Tile* target) {
 		deltaY *= -1;
 
 	return deltaX + deltaY;
+}
+
+int Tile::getFCost(int targetID) {
+	return hCostMap_[targetID] + weight_;
 }

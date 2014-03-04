@@ -85,7 +85,7 @@ void Universe::initTiles() {
 		wTile++;
 
 		//Then calculate the Heuristic costs for that tile
-		tileSet_[i]->calculateHCostMap(tileSet_, xDim_ * yDim_);
+		//tileSet_[i]->calculateHCostMap(tileSet_, xDim_ * yDim_);
 	}
 
 }

@@ -13,42 +13,84 @@ Pathing::~Pathing() {
 
 Tile** Pathing::findPath(Tile* start, Tile* end) {
 
-	std::vector<int> fCosts;
+	origin_ = start;
+	target_ = end;
 
-	while (openList.size() > 0) {
+	addToClosedList(start);
 
+	Node* bestNode = 0;
+
+
+	std::map<int, Node>::iterator it;
+
+	bool finished = false;
+
+	while (!finished) {
+		for(it = openList_.begin(); it != openList_.end(); it++) {
+			if (bestNode) {
+				if (it->second.f <= bestNode->f)
+					bestNode = &(it->second);
+			}
+			else
+			{
+				bestNode = &(it->second);
+			}
+		}
+
+		if (bestNode->tile == target_)
+			finished = true;
+
+		addToClosedList(bestNode->tile);
 	}
 
 
-	return NULL;
+
+
+	//backtrack from end to start via closed list, copy into array to return
+	return 0;
 }
 
 void Pathing::addToClosedList(Tile* tile) {
 
-	if (openList.size() != 0)
-	{
-		for (int i = 0; i < (int)openList.size() - 1; i++)
-		{
-			if (openList[i] == tile) {
-				openList.erase(openList.begin() + i);
+	Node node = {tile, 0, tile->getFCost(target_->getID())};
+
+	closedList_[tile->getID()] = node;
+
+	//remove from open list
+	openList_.erase(tile->getID());
+
+	if (tile != target_) {
+		Tile* neighbour;
+		int neighbourID;
+		//iterate through neighbours
+		for (int i = 0; i < 8; i++) {
+			neighbour = 0;
+
+			neighbourID = tile->getNeighbourID((tile_dir)i);
+
+			if (neighbourID >= 0) {
+				neighbour = tile->getNeighbour((tile_dir)i);
+				if (!openList_.count(neighbourID) && neighbour->isTraversable()) {
+					//if doesn't exist on the list and is traversable add it
+					Node newNode = {neighbour, tile, neighbour->getFCost(target_->getID())};
+					openList_[neighbour->getID()] = newNode;
+				}
 			}
 		}
 	}
-
-
-	closedList.push_back(tile);
-
-
-	//check adjacent squares on open list
-	//add to open list
 }
 
-int Pathing::getIndexOfInList(Tile* tile, std::vector<Tile*>* list) {
+Tile** Pathing::tracePath() {
 
-	for (int i = 0; i < (int)list->size() - 1; i++)
-	{
+	std::vector<Tile*> tempList;
 
+	Tile* currentTile = target_;
+
+	while(currentTile != origin_) {
+		tempList.push_back(currentTile);
+
+		currentTile = closedList_[currentTile->getID()].parent;
 	}
 
-	return -1;
+	return tempList.data();
 }

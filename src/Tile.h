@@ -13,7 +13,7 @@
 #include "Engine/Sprite.h"
 
 
-typedef enum {
+enum tile_dir{
 	TILE_NORTH = 0,
 	TILE_NORTHEAST = 1,
 	TILE_EAST = 2,
@@ -22,15 +22,15 @@ typedef enum {
 	TILE_SOUTHWEST = 5,
 	TILE_WEST = 6,
 	TILE_NORTHWEST = 7
-} tile_dir;
+};
 
-typedef enum {
+enum tile_status {
 	TILE_STATUS_OPEN,
 	TILE_STATUS_WALL,
 	TILE_STATUS_FLOOR,
 	TILE_STATUS_DOOR,
 	TILE_STATUS_BLOCKED
-} tile_status;
+};
 
 class Tile {
 public:
@@ -50,16 +50,20 @@ public:
 	 * world coordinates the tile exists at
 	 */
 	Vector2D* 		getCoords();
+	int				getID();
+	Tile*			getNeighbour(tile_dir);
+	int				getNeighbourID(tile_dir);
 	void 			setStatus(tile_status);
+	bool			isTraversable();
 	/*
 	 * Pre-calculate H-costs (manhattan method) for all tiles in grid
 	 */
 	void			calculateHCostMap(Tile** tileset, int size);
 	int				calculateHCost(Tile* target);
-
+	int				getFCost(int targetID);
 
 private:
-
+	int				 	tilesetX_, tilesetY_;
 	int					id_, weight_;
 	Tile* 				nTile_,* neTile_,* eTile_,* seTile_,* sTile_,
 						* swTile_,* wTile_,* nwTile_;

@@ -8,8 +8,15 @@
 #ifndef PATHING_H_
 #define PATHING_H_
 
+#include <map>
 #include <vector>
 #include "../../Tile.h"
+
+struct Node {
+	Tile*	tile;
+	Tile*	parent;
+	int		f;
+};
 
 class Pathing {
 public:
@@ -23,14 +30,21 @@ public:
 	Tile** findPath(Tile* start, Tile* end);
 
 private:
-	std::vector<Tile*>	openList;
-	std::vector<Tile*>	closedList;
-	std::vector<Tile*>	fCostMap;
+	Tile*					origin_;
+	Tile*					target_;
+	std::map<int, Node>		openList_;
+	std::map<int, Node>		closedList_;
 
+	/*
+	 * Adds next tile to the closed list, performing checks on
+	 * adjacent nodes in open list and adding new nodes to the
+	 * open list.
+	 */
 	void 	addToClosedList(Tile* tile);
-	int		getIndexOfInList(Tile* tile, std::vector<Tile*>* list);
-
-	Tile*	findLowestCostNode();
+	/*
+	 *
+	 */
+	Tile**	tracePath();
 };
 
 #endif /* PATHING_H_ */
