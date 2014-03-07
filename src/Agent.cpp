@@ -15,6 +15,6 @@ Agent::Agent(Tile* location, Sprite* sprite) : GameObject(location, sprite)
 Agent::~Agent() {
 }
 
-void Agent::addTask(std::string name, Tile** path) {
+void Agent::setTask(std::string name, Tile** path) {
 	currentTask_ = {"placeholder task", path};
 }

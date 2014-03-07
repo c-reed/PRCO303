@@ -37,6 +37,20 @@ void Game::onRender() {
 		}
 	}
 
+
+	std::vector<GameObject*>::iterator it;
+	GameObject* gobj;
+
+	for (it = universe_->gameObjects.begin(); it != universe_->gameObjects.end(); it++) {
+
+		gobj = *it;
+		pos = camera_->getDrawPos(gobj->getPos());
+			textureManager_->draw(gobj->getSprite()->getRef(), pos.x, pos.y,
+												gobj->getSprite()->getWidth(), gobj->getSprite()->getHeight(),
+												gobj->getSprite()->getCurrentAnimation()->prog, gobj->getSprite()->getCurrentAnimation()->y,
+												camera_, sdlRenderer_, SDL_FLIP_NONE);
+	}
+/*
 	//render gameobjects
 	GameObject* gobj = universe_->gameObjects.back();
 	pos = camera_->getDrawPos(gobj->getPos());
@@ -44,8 +58,7 @@ void Game::onRender() {
 										gobj->getSprite()->getWidth(), gobj->getSprite()->getHeight(),
 										gobj->getSprite()->getCurrentAnimation()->prog, gobj->getSprite()->getCurrentAnimation()->y,
 										camera_, sdlRenderer_, SDL_FLIP_NONE);
-
-
+*/
 
 
 //	SDL_Color textColor = {0,0,0,255};

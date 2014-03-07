@@ -5,6 +5,7 @@
  *      Author: creed
  */
 
+#include "../Agent.h"
 #include "Game.h"
 #include "TextureManager.h"
 
@@ -45,8 +46,17 @@ bool Game::onInit() {
 	sprite->addAnimation(0,1,0,false);
 	sprite->setFrame(1);
 
-	//TODO REMOVE; temporary for testing
-	universe_->gameObjects.push_back(new Agent(universe_->getTileset()[130], sprite));
+	//TODO REMOVE temporary for testing
+	Agent* a = new Agent(universe_->getTileset()[130], sprite);
+	universe_->gameObjects.push_back(a);
+	a = new Agent(universe_->getTileset()[134], sprite);
+	universe_->gameObjects.push_back(a);
+
+	for (int i = 0; i < 48; i++) {
+		a = new Agent(universe_->getTileset()[rand() % (128 * 128)], sprite);
+		universe_->gameObjects.push_back(a);
+	}
+
 	universe_->getTileset()[135]->setStatus(TILE_STATUS_BLOCKED);
 	universe_->getTileset()[135 - 128]->setStatus(TILE_STATUS_BLOCKED);
 	universe_->getTileset()[135 + 128]->setStatus(TILE_STATUS_BLOCKED);
