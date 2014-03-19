@@ -22,9 +22,7 @@ public:
 	virtual ~GameObject();
 	Sprite* getSprite();
 	Vector2D* getPos();
-	Tile* getTile();
-	void move(Tile* newLocation);
-
+    Tile* getTile();
 protected:
 	Tile*			location_;
 	Sprite*			sprite_;

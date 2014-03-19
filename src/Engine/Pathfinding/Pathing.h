@@ -14,8 +14,10 @@
 
 struct Node {
 	Tile*	tile;
-	Tile*	parent;
+    Node*	parent;
 	int		f;
+
+    Node(Tile* tile, Node* parent, int f) : tile(tile), parent(parent), f(f) {}
 };
 
 class Pathing {
@@ -32,15 +34,15 @@ public:
 private:
 	Tile*					origin_;
 	Tile*					target_;
-	std::map<int, Node>		openList_;
-	std::map<int, Node>		closedList_;
+    std::map<int, Node*>		openList_;
+    std::map<int, Node*>		closedList_;
 
 	/*
 	 * Adds next tile to the closed list, performing checks on
 	 * adjacent nodes in open list and adding new nodes to the
 	 * open list.
 	 */
-	void 	addToClosedList(Tile* tile);
+    void 	addToClosedList(Node* node);
 	/*
 	 *
 	 */

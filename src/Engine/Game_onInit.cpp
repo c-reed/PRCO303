@@ -47,23 +47,17 @@ bool Game::onInit() {
 	sprite->setFrame(1);
 
 	//TODO REMOVE temporary for testing
-	Agent* a = new Agent(universe_->getTileset()[130], sprite);
-	universe_->gameObjects.push_back(a);
-	a = new Agent(universe_->getTileset()[134], sprite);
-	universe_->gameObjects.push_back(a);
+    Agent* a = new Agent(universe_->getTileset()[64 + 64 * 128], sprite);
+    universe_->agents.push_back(a);
 
-	for (int i = 0; i < 48; i++) {
-		a = new Agent(universe_->getTileset()[rand() % (128 * 128)], sprite);
-		universe_->gameObjects.push_back(a);
-	}
-
-	universe_->getTileset()[135]->setStatus(TILE_STATUS_BLOCKED);
-	universe_->getTileset()[135 - 128]->setStatus(TILE_STATUS_BLOCKED);
-	universe_->getTileset()[135 + 128]->setStatus(TILE_STATUS_BLOCKED);
+    universe_->getTileset()[64*64 + 2]->setStatus(TILE_STATUS_BLOCKED);
+    universe_->getTileset()[64*64 + 2 + 128]->setStatus(TILE_STATUS_BLOCKED);
+    universe_->getTileset()[64*64 + 2 + 256]->setStatus(TILE_STATUS_BLOCKED);
 
 	camera_ = new Camera(960, 540);
-	camera_->setPosition(25.0f, 25.0f);
+    camera_->setPosition(64.0f, 64.0f);
 
+    a->setTask("test", a->findPath(a->getTile(), universe_->getTileset()[(64 + 64 * 128) + 10]));
 	//All went well
 	return true;
 }

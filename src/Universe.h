@@ -10,6 +10,7 @@
 
 #include "Tile.h"
 #include "GameObject.h"
+#include "Agent.h"
 #include <vector>
 
 class Universe {
@@ -21,7 +22,7 @@ public:
 	int getSizeY();
 	Tile** getTileset();
 	Tile* getTileAt(Vector2D* location);
-	std::vector<GameObject*> gameObjects;
+    std::vector<Agent*> agents;
 
 private:
 	void initTiles();

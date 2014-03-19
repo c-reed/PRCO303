@@ -49,7 +49,8 @@ public:
 	 * Returns a pointer to a Vector2D object containing the X and Y
 	 * world coordinates the tile exists at
 	 */
-	Vector2D* 		getCoords();
+    Vector2D* 		getGridCoords();
+    Vector2D*        getWorldCoords();
 	int				getID();
 	Tile*			getNeighbour(tile_dir);
 	int				getNeighbourID(tile_dir);
@@ -59,10 +60,10 @@ public:
 	 * Pre-calculate H-costs (manhattan method) for all tiles in grid
 	 */
 	void			calculateHCostMap(Tile** tileset, int size);
-	int				calculateHCost(Tile* target);
-	int				getFCost(int targetID);
+    int				getFCost(Tile* target);
 
 private:
+    int                 calculateHCost(Tile* target);
 	int				 	tilesetX_, tilesetY_;
 	int					id_, weight_;
 	Tile* 				nTile_,* neTile_,* eTile_,* seTile_,* sTile_,

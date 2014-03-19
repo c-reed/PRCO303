@@ -17,12 +17,14 @@
  * A GameObject derived class representing entities that can move
  * and "think".
  */
-class Agent : public GameObject, Pathing {
+class Agent : public GameObject, public Pathing {
 public:
 	Agent(Tile*, Sprite*);
 	virtual ~Agent();
 	void setTask(std::string name, Tile** path);
 	void performTask();
+    bool move(Tile* newLocation);
+    void update();
 private:
 	Task currentTask_; //TODO turn this into an ordered list or something
 };

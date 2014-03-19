@@ -58,7 +58,7 @@ Vector2D Camera::getDrawPos(Vector2D* coords) {
 	int x, y;
 	float xtemp, ytemp;
 
-	xtemp = (cameraWidth_ / 2) + coords->x - position_.x;
+    xtemp = (cameraWidth_ / 2) + coords->x - position_.x;
 	ytemp = ((cameraWidth_ / aRatio_) / 2) + coords->y - position_.y;
 
 	x = xtemp * ratio;
@@ -68,6 +68,7 @@ Vector2D Camera::getDrawPos(Vector2D* coords) {
 
 	return drawPos;
 }
+
 void Camera::zoomIn() {
 	setSizeX(cameraWidth_ + 0.25f);
 }

@@ -12,6 +12,8 @@ Tile::Tile(int id, int tilesetX, int tilesetY)	:	id_(id), weight_(0), nTile_(0),
 													hCostMap_(0), tileStatus_(TILE_STATUS_OPEN)
 {
 
+    hCostMap_ = (int*)calloc(sizeof(int), tilesetX * tilesetY);
+
 	tilesetX_ = tilesetX;
 	tilesetY_ = tilesetY;
 
@@ -101,8 +103,12 @@ Tile* Tile::getTile(tile_dir dir) {
 	}
 }
 
-Vector2D* Tile::getCoords() {
-	return worldCoords_;
+Vector2D* Tile::getWorldCoords() {
+    return worldCoords_;
+}
+
+Vector2D* Tile::getGridCoords() {
+    return gridCoords_;
 }
 
 int Tile::getID() {
@@ -184,12 +190,12 @@ void Tile::calculateHCostMap(Tile** tileset, int numTiles) {
 
 	for (int i = 0; i < numTiles; i++) {
 
-		deltaX = tileset[i]->getCoords()->x - gridCoords_->x;
+        deltaX = tileset[i]->getGridCoords()->x - gridCoords_->x;
 
 		if (deltaX < 0)
 			deltaX *= -1;
 
-		deltaY = tileset[i]->getCoords()->y - gridCoords_->y;
+        deltaY = tileset[i]->getGridCoords()->y - gridCoords_->y;
 
 		if (deltaY < 0)
 			deltaY *= -1;
@@ -208,19 +214,27 @@ int Tile::calculateHCost(Tile* target) {
 	int deltaX = 0;
 	int deltaY = 0;
 
-	deltaX = target->getCoords()->x - gridCoords_->x;
+    deltaX = target->getGridCoords()->x - gridCoords_->x;
 
 	if (deltaX < 0)
 		deltaX *= -1;
 
-	deltaY = target->getCoords()->y - gridCoords_->y;
+    deltaY = target->getGridCoords()->y - gridCoords_->y;
 
 	if (deltaY < 0)
 		deltaY *= -1;
 
-	return deltaX + deltaY;
+    hCostMap_[target->getID()] = deltaX + deltaY;
+
+    return hCostMap_[target->getID()];
 }
 
-int Tile::getFCost(int targetID) {
-	return hCostMap_[targetID] + weight_;
+
+int Tile::getFCost(Tile* target) {
+    if (hCostMap_[target->getID()]) {
+        return hCostMap_[target->getID()] + weight_;
+    } else {
+        hCostMap_[target->getID()] = calculateHCost(target);
+        return hCostMap_[target->getID()] + weight_;
+    }
 }

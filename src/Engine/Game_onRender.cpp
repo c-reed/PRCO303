@@ -27,7 +27,7 @@ void Game::onRender() {
 	Tile** tileset = universe_->getTileset();
 	for(int i = 0; i < 128 * 128; i++) {
 
-		pos = camera_->getDrawPos(tileset[i]->getCoords());
+        pos = camera_->getDrawPos(tileset[i]->getWorldCoords());
 
 		if (pos.x < 1100 &&	pos.x > -50 && pos.y < 590 && pos.y > -50)
 		{
@@ -38,16 +38,16 @@ void Game::onRender() {
 	}
 
 
-	std::vector<GameObject*>::iterator it;
-	GameObject* gobj;
+    std::vector<Agent*>::iterator it;
+    Agent* agent;
 
-	for (it = universe_->gameObjects.begin(); it != universe_->gameObjects.end(); it++) {
+    for (it = universe_->agents.begin(); it != universe_->agents.end(); it++) {
 
-		gobj = *it;
-		pos = camera_->getDrawPos(gobj->getPos());
-			textureManager_->draw(gobj->getSprite()->getRef(), pos.x, pos.y,
-												gobj->getSprite()->getWidth(), gobj->getSprite()->getHeight(),
-												gobj->getSprite()->getCurrentAnimation()->prog, gobj->getSprite()->getCurrentAnimation()->y,
+        agent = *it;
+        pos = camera_->getDrawPos(agent->getPos());
+            textureManager_->draw(agent->getSprite()->getRef(), pos.x, pos.y,
+                                                agent->getSprite()->getWidth(), agent->getSprite()->getHeight(),
+                                                agent->getSprite()->getCurrentAnimation()->prog, agent->getSprite()->getCurrentAnimation()->y,
 												camera_, sdlRenderer_, SDL_FLIP_NONE);
 	}
 /*

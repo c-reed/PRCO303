@@ -11,6 +11,8 @@
 struct Task {
 	std::string	name;
 	Tile** 		path;
+    int         pathPos;
+    int         steps;
 };
 
 #endif /* TASK_H_ */

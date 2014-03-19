@@ -16,18 +16,13 @@ GameObject::~GameObject() {
 }
 
 Vector2D* GameObject::getPos() {
-	return location_->getCoords();
+    return location_->getWorldCoords();
 }
 
 Tile* GameObject::getTile() {
 	return location_;
 }
 
-void GameObject::move(Tile* newLocation) {
-	location_ = newLocation;
-}
-
 Sprite* GameObject::getSprite() {
 	return sprite_;
 }
-

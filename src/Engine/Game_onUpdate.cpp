@@ -6,6 +6,7 @@
  */
 
 #include "Game.h"
+#include "../Agent.h"
 
 /*
  * Update logic for each frame of the game loop
@@ -13,6 +14,14 @@
 void Game::onUpdate() {
 
 	updateGameTime();
+
+    std::vector<Agent*>::iterator it;
+    Agent* agent = 0;
+
+    for (it = universe_->agents.begin();it != universe_->agents.end(); it++) {
+        agent =  *it;
+        agent->update();
+    }
 
 	//std::cout << getFrameRate() << "\t" << getDeltaT() << std::endl;
 

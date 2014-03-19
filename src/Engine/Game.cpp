@@ -24,7 +24,7 @@ int Game::onExecute() {
 	if (!onInit()) {
 		std::cout << "**Something went wrong on initialisation" << std::endl;;
 		return false;
-	}
+    }
 
 	SDL_Event event;
 

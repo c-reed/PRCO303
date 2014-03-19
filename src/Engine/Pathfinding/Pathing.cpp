@@ -16,76 +16,77 @@ Tile** Pathing::findPath(Tile* start, Tile* end) {
 	origin_ = start;
 	target_ = end;
 
-	addToClosedList(start);
+    Node* n = new Node(start, 0, start->getFCost(end));
+    addToClosedList(n);
 
 	Node* bestNode = 0;
+    Node* curNode = 0;
 
-
-	std::map<int, Node>::iterator it;
+    std::map<int, Node*>::iterator it;
 
 	bool finished = false;
 
 	while (!finished) {
 		for(it = openList_.begin(); it != openList_.end(); it++) {
+            curNode = it->second;
 			if (bestNode) {
-				if (it->second.f <= bestNode->f)
-					bestNode = &(it->second);
+                if (curNode->f <= bestNode->f)
+                    bestNode = curNode;
 			}
 			else
 			{
-				bestNode = &(it->second);
+                bestNode = curNode;
 			}
-		}
+        }
 
-		if (bestNode->tile == target_)
+        if (bestNode->tile == target_)
 			finished = true;
 
-		addToClosedList(bestNode->tile);
+        addToClosedList(bestNode);
 	}
 
-	return tracePath();
+    return tracePath();
 }
 
-void Pathing::addToClosedList(Tile* tile) {
+void Pathing::addToClosedList(Node* node) {
 
-	Node node = {tile, 0, tile->getFCost(target_->getID())};
-
-	closedList_[tile->getID()] = node;
+    closedList_[node->tile->getID()] = node;
 
 	//remove from open list
-	openList_.erase(tile->getID());
+    openList_.erase(node->tile->getID());
 
-	if (tile != target_) {
+    if (node->tile != target_) {
 		Tile* neighbour;
 		int neighbourID;
 		//iterate through neighbours
 		for (int i = 0; i < 8; i++) {
 			neighbour = 0;
 
-			neighbourID = tile->getNeighbourID((tile_dir)i);
+            neighbourID = node->tile->getNeighbourID((tile_dir)i);
 
 			if (neighbourID >= 0) {
-				neighbour = tile->getNeighbour((tile_dir)i);
-				if (!openList_.count(neighbourID) && neighbour->isTraversable()) {
+                neighbour = node->tile->getNeighbour((tile_dir)i);
+                if (!openList_.count(neighbourID) && neighbour->isTraversable()) {
 					//if doesn't exist on the list and is traversable add it
-					Node newNode = {neighbour, tile, neighbour->getFCost(target_->getID())};
-					openList_[neighbour->getID()] = newNode;
-				}
-			}
-		}
-	}
+                    Node* newNode = new Node(neighbour, node, neighbour->getFCost(target_));
+                    openList_[neighbour->getID()] = newNode;
+                }
+            }
+        }
+    }
 }
 
 Tile** Pathing::tracePath() {
 
 	std::vector<Tile*> tempList;
 
-	Tile* currentTile = target_;
+    Node* currentNode = closedList_[target_->getID()];
 
-	while(currentTile != origin_) {
-		tempList.insert(tempList.begin(), currentTile);
+    while(currentNode) {
 
-		currentTile = closedList_[currentTile->getID()].parent;
+        tempList.push_back(currentNode->tile);
+
+        currentNode = currentNode->parent;
 	}
 
 	return tempList.data();
