@@ -43,7 +43,6 @@ private:
 	 * Whether the game's running
 	 */
 	bool 				isRunning_;
-
 	/*
 	 * SDL window and renderer for creating pretty visual things
 	 */

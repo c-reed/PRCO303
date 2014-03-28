@@ -174,11 +174,9 @@ void Tile::setStatus(tile_status tileStatus) {
 }
 
 bool Tile::isTraversable() {
-	if (tileStatus_ == TILE_STATUS_BLOCKED)
-		return false;
-
-	return true;
+    return tileStatus_ == TILE_STATUS_BLOCKED;
 }
+
 void Tile::calculateHCostMap(Tile** tileset, int numTiles) {
 
 	//std::cout << "\nDoing H-costs for tile: " << id_ << std::endl;

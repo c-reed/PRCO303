@@ -33,7 +33,8 @@ void Agent::update() {
     if (currentTask_.path) {
         if (currentTask_.pathPos < currentTask_.steps) {
             currentTask_.pathPos++;
-            move(currentTask_.path[currentTask_.pathPos]);
+            if(!move(currentTask_.path[currentTask_.pathPos]))
+                currentTask_ = {"NULL", 0, 0, 0};
         }
     }
 }

@@ -44,7 +44,6 @@ Tile** Pathing::findPath(Tile* start, Tile* end) {
 
         addToClosedList(bestNode);
 	}
-
     return tracePath();
 }
 
@@ -83,7 +82,6 @@ Tile** Pathing::tracePath() {
     Node* currentNode = closedList_[target_->getID()];
 
     while(currentNode) {
-
         tempList.push_back(currentNode->tile);
 
         currentNode = currentNode->parent;

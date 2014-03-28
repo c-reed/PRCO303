@@ -25,7 +25,6 @@ void Game::onUpdate() {
 
 	//std::cout << getFrameRate() << "\t" << getDeltaT() << std::endl;
 
-
 	keystates_ = SDL_GetKeyboardState(0);
 
 	if(keystates_ != 0)

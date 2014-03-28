@@ -50,14 +50,14 @@ bool Game::onInit() {
     Agent* a = new Agent(universe_->getTileset()[64 + 64 * 128], sprite);
     universe_->agents.push_back(a);
 
-    universe_->getTileset()[64*64 + 2]->setStatus(TILE_STATUS_BLOCKED);
-    universe_->getTileset()[64*64 + 2 + 128]->setStatus(TILE_STATUS_BLOCKED);
-    universe_->getTileset()[64*64 + 2 + 256]->setStatus(TILE_STATUS_BLOCKED);
+    universe_->getTileset()[(64+64 * 128) + 2]->setStatus(TILE_STATUS_BLOCKED);
+    universe_->getTileset()[(64+64 * 128) - 126]->setStatus(TILE_STATUS_BLOCKED);
+    universe_->getTileset()[(64+64 * 128) + 258]->setStatus(TILE_STATUS_BLOCKED);
 
 	camera_ = new Camera(960, 540);
     camera_->setPosition(64.0f, 64.0f);
 
-    a->setTask("test", a->findPath(a->getTile(), universe_->getTileset()[(64 + 64 * 128) + 10]));
+    //a->setTask("test", a->findPath(a->getTile(), universe_->getTileset()[(64 + 64 * 128) + 10]));
 	//All went well
 	return true;
 }

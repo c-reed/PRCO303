@@ -59,7 +59,7 @@ Vector2D Camera::getDrawPos(Vector2D* coords) {
 	float xtemp, ytemp;
 
     xtemp = (cameraWidth_ / 2) + coords->x - position_.x;
-	ytemp = ((cameraWidth_ / aRatio_) / 2) + coords->y - position_.y;
+    ytemp = ((cameraWidth_ / aRatio_) / 2) + coords->y - position_.y;
 
 	x = xtemp * ratio;
 	y = ytemp * ratio;

@@ -20,7 +20,7 @@ void Game::onRender() {
 
 
 
-	Vector2D pos;
+    Vector2D pos;
 
 
 	//render tileset
@@ -37,7 +37,6 @@ void Game::onRender() {
 		}
 	}
 
-
     std::vector<Agent*>::iterator it;
     Agent* agent;
 
@@ -50,7 +49,10 @@ void Game::onRender() {
                                                 agent->getSprite()->getCurrentAnimation()->prog, agent->getSprite()->getCurrentAnimation()->y,
 												camera_, sdlRenderer_, SDL_FLIP_NONE);
 	}
-/*
+
+
+    /*
+
 	//render gameobjects
 	GameObject* gobj = universe_->gameObjects.back();
 	pos = camera_->getDrawPos(gobj->getPos());
